@@ -174,6 +174,8 @@ force_https_protocol=PROTOCOL_TLSv1_2
 <h3>참고</h3>
 [how-to-create-an-ssl-certificate-on-apache-for-centos-7] <br/>
 [AMBARI를 이용한 HDP 2.0 설치하기]
+[Apache Ambari Security]
 
 [how-to-create-an-ssl-certificate-on-apache-for-centos-7]: https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-apache-for-centos-7
 [AMBARI를 이용한 HDP 2.0 설치하기]: http://guruble.com/ambari/
+[Apache Ambari Security]: https://docs.hortonworks.com/HDPDocuments/Ambari-2.6.2.2/bk_ambari-security/content/optional_set_up_ssl_for_ambari.html
