@@ -86,6 +86,14 @@ services:
     container_name: redissen3
 {% endhighlight %}
 
+<h2>
+Info
+</h2>
+
+초기 설정되어있는 Master로 필수 설정임<br/>
+그 후 센티널 끼리 연결이 된 이후<br/>
+페일오버 시 Slave가 마스터로 변했을때 그 마스터 정보로<br/>
+Config가 변경이 됨<br/>
 
 <h3>참고</h3>
 [레디스 센티널 예제(Redis Sentinel)] <br/>

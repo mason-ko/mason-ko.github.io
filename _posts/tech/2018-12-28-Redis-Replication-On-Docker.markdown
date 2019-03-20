@@ -112,3 +112,12 @@ networks:
         - subnet: 10.0.0.0/16
 
 {% endhighlight %}
+
+<h2>
+Info
+</h2>
+
+slave of 를 통해 초기 slave를 지정 할 수 있음 <br/>
+서버의 상태 변경 시 target 지정한 conf 값이 변함 <br/>
+slave가 master로 승격이 될 경우를 대비해서 <br/>
+master와 slave 구분없이 모든 auto에 대해 공통 단일화 시켜야함 <br/>
