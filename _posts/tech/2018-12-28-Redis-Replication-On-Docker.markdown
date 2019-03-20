@@ -2,8 +2,8 @@
 layout: post
 title:  "Redis Replication Docker로 설치"
 date:   2018-12-28 16:42:46 +0900
-categories: tech hadoop
-permalink: /tech/hadoop/:title
+categories: tech docker
+permalink: /tech/docker/:title
 ---
 
 <h2>
@@ -36,35 +36,25 @@ sudo chmod +x /usr/local/bin/docker-compose
 Redis Replication Config File 준비
 </h2>
 
-Redis Stable Config 복사
-
-<a>http://download.redis.io/redis-stable/redis.conf</a>
-
-redis.conf 만듬
+1. redis.conf 만듬
+2. Redis Stable Config 복사
+3. protected-mode 사용중일 때 비밀번호 필요하며
+4. Docker 외부에서 사용가능하도록 bind 주석 처리
+5. 각 slave config에 master 정보 추가
 
 {% highlight Kconfig %}
 mkdir ./s1 ./s2 ./s3
-vi s1/redis.conf
-vi s2/redis.conf
-vi s3/redis.conf
-{% endhighlight %}
+wget http://download.redis.io/redis-stable/redis.conf
+sed -i "s/bind 127.0.0.1/#bind 127.0.0.1/" redis.conf
+echo 'masterauth "password"' >> redis.conf
+echo 'requirepass "password"' >> redis.conf
 
-protected-mode 사용중일 때 비밀번호 필요하며
-Docker 외부에서 사용가능하도록 bind 주석 처리
-
-{% highlight Kconfig %}
-masterauth "password"
-requirepass "password"
-#bind 127.0.0.1
-{% endhighlight %}
-
-각 slave config에 master 정보 추가
-
-{% highlight Kconfig %}
-vi s2/redis.conf
-vi s3/redis.conf
-
-slaveof 10.0.0.1 7000
+cp -rf redis.conf ./s1/redis.conf
+cp -rf redis.conf ./s2/redis.conf
+cp -rf redis.conf ./s3/redis.conf
+ 
+echo 'slaveof 10.0.0.1 7000' >> ./s2/redis.conf
+echo 'slaveof 10.0.0.1 7000' >> ./s3/redis.conf
 {% endhighlight %}
 
 <h2>

@@ -2,8 +2,8 @@
 layout: post
 title:  "Redis Sentinel Docker로 설치"
 date:   2018-12-28 16:42:46 +0900
-categories: tech hadoop
-permalink: /tech/hadoop/:title
+categories: tech docker
+permalink: /tech/docker/:title
 ---
 
 <h2>
@@ -39,17 +39,16 @@ Redis Sentinel Config File 준비
 sentinel.conf 만듬
 
 {% highlight Kconfig %}
-mkdir ./s1 ./s2 ./s3
-vi s1/sentinel.conf
-vi s2/sentinel.conf
-vi s3/sentinel.conf
-{% endhighlight %}
-
-{% highlight Kconfig %}
-sentinel monitor mymaster 10.0.0.1 7000 2
-sentinel down-after-milliseconds mymaster 5000
-sentinel failover-timeout mymaster 10000
-sentinel auth-pass mymaster password
+mkdir ./sentinel1 ./sentinel2 ./sentinel3
+ 
+echo 'sentinel monitor mymaster 10.0.0.1 7000 2' >> sentinel.conf
+echo 'sentinel down-after-milliseconds mymaster 5000' >> sentinel.conf
+echo 'sentinel failover-timeout mymaster 7000' >> sentinel.conf
+echo 'sentinel auth-pass mymaster password' >> sentinel.conf
+ 
+cp -rf sentinel.conf ./sentinel1/sentinel.conf
+cp -rf sentinel.conf ./sentinel2/sentinel.conf
+cp -rf sentinel.conf ./sentinel3/sentinel.conf
 {% endhighlight %}
 
 <h2>
@@ -64,26 +63,26 @@ services:
   redissen1:
     image: redis:5.0.2-alpine
     ports:
-      - 20000:20000
-    command: sh -c "redis-sentinel /etc/redis/sentinel.conf --port 20000"
+      - 17000:17000
+    command: sh -c "redis-sentinel /etc/redis/sentinel.conf --port 17000"
     volumes:
-      - ./s1:/etc/redis
+      - ./sentinel1:/etc/redis
     container_name: redissen1
   redissen2:
     image: redis:5.0.2-alpine
     ports:
-      - 20001:20001
-    command: sh -c "redis-sentinel /etc/redis/sentinel.conf --port 20001"
+      - 17001:17001
+    command: sh -c "redis-sentinel /etc/redis/sentinel.conf --port 17001"
     volumes:
-      - ./s2:/etc/redis
+      - ./sentinel2:/etc/redis
     container_name: redissen2
   redissen3:
     image: redis:5.0.2-alpine
     ports:
-      - 20002:20002
-    command: sh -c "redis-sentinel /etc/redis/sentinel.conf --port 20002"
+      - 17002:17002
+    command: sh -c "redis-sentinel /etc/redis/sentinel.conf --port 17002"
     volumes:
-      - ./s3:/etc/redis
+      - ./sentinel3:/etc/redis
     container_name: redissen3
 {% endhighlight %}
 
