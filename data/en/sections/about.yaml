@@ -1,0 +1,30 @@
+# section information
+section:
+  name: About
+  id: about
+  enable: true
+  weight: 1
+  showOnNavbar: true
+  template: sections/about.html
+
+# your designation
+designation: Backend Engineer
+# your company information
+
+# your social links
+# give as many as you want. use font-awesome for the icons.
+socialLinks:
+  - name: Github
+    icon: "fab fa-github"
+    url: "https://github.com/mason-ko"
+
+# your soft skills
+# give the percentage between 50 to 100 with 5 intervals.
+# currently supported colors: blue, yellow, pink, green, sky, orange
+softSkills:
+  - name: Leadership
+    percentage: 85
+    color: blue
+  - name: Team Work
+    percentage: 90
+    color: yellow
