@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redis Cluster</title>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/assets/css/layouts/main.css"/>
+<link rel="stylesheet" href="/assets/css/style.css"/>
+<link rel="stylesheet" href="/assets/css/navigators/navbar.css"/>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+
+
+<link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+
+
+<link rel="stylesheet" href="/assets/css/style.css"/>
+
+    
+<meta name="description" content="Redis Cluster" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css"
+/>
+<link rel="stylesheet" href="/assets/css/layouts/single.css"/>
+<link rel="stylesheet" href="/assets/css/navigators/sidebar.css">
+
+
+    
+    
+  </head>
+
+  <body data-spy="scroll" data-target="#TableOfContents" data-offset="80">
+    <div class="container-fluid bg-dimmed wrapper">
+      
+      
+    
+
+
+
+
+<nav class="navbar navbar-expand-xl top-navbar final-navbar shadow">
+  <div class="container">
+      <button class="navbar-toggler navbar-light" id="sidebar-toggler" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+      <img src="/assets/images/main-logo.png">My Site</a>
+    <button class="navbar-toggler navbar-light" id="toc-toggler" type="button" onclick="toggleTOC()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse lang-selector" id="top-nav-items">
+      <ul class="navbar-nav ml-auto">
+      
+      </ul>
+    </div>
+  </div>
+  
+  <img src="/assets/images/main-logo.png" class="d-none" id="main-logo">
+  <img src="/assets/images/inverted-logo.png" class="d-none" id="inverted-logo">
+</nav>
+
+
+
+      
+      
+  <section class="sidebar-section" id="sidebar-section">
+    <div class="sidebar-holder">
+      <div class="sidebar" id="sidebar">
+        <input type="text" value="" placeholder="Search" data-search="" id="search-box" />
+        <div class="sidebar-tree">
+          <ul class="tree" id="tree">
+            <li id="list-heading"><a href="/posts" data-filter="all">Posts</a></li>
+            <div class="subtree">
+                
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/">Tech</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">2018</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/">2019</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2020/">2020</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+      
+      
+<section class="content-section" id="content-section">
+  <div class="content">
+    <div class="container p-0 read-area">
+      
+      <div class="hero-area col-sm-12" id="hero-area" style='background-image: url(https://mason-ko.github.io/assets/images/default-hero.jpg);'>
+      </div>
+
+      
+      <div class="page-content">
+        <div class="author-profile ml-auto align-self-lg-center">
+          <img class="rounded-circle" src='/images/author/business-man.png'/>
+          <h5 class="author-name">Mason Ko</h5>
+          <p>March 20, 2019</p>
+        </div>
+
+        <div class="title">
+          <h1>Redis Cluster</h1>
+        </div>
+
+        <div class="post-content" id="post-content">
+          <!-- raw HTML omitted -->
+<p>docker-compose.yaml</p>
+<p>{% highlight Kconfig %}
+version: &ldquo;3.1&rdquo;
+services:
+redis-master-1:
+image: redis:5.0.2-alpine
+ports:
+- 7000:7000
+command: sh -c &ldquo;redis-server &ndash;port 7000 &ndash;cluster-enabled yes &ndash;cluster-config-file nodes.conf &ndash;cluster-node-timeout 5000&rdquo;
+networks:
+redisnet:
+ipv4_address: 10.0.0.2
+redis-master-2:
+image: redis:5.0.2-alpine
+ports:
+- 7001:7001
+command: sh -c &ldquo;redis-server &ndash;port 7001 &ndash;cluster-enabled yes &ndash;cluster-config-file nodes.conf &ndash;cluster-node-timeout 5000&rdquo;
+networks:
+redisnet:
+ipv4_address: 10.0.0.3
+depends_on:
+- redis-master-1 <br>
+redis-master-3:
+image: redis:5.0.2-alpine
+ports:
+- 7002:7002
+command: sh -c &ldquo;redis-server &ndash;port 7002 &ndash;cluster-enabled yes &ndash;cluster-config-file nodes.conf &ndash;cluster-node-timeout 5000&rdquo;
+networks:
+redisnet:
+ipv4_address: 10.0.0.4
+depends_on:
+- redis-master-2
+redis-slave-1:
+image: redis:5.0.2-alpine
+ports:
+- 7003:7003
+command: sh -c &ldquo;redis-server &ndash;port 7003 &ndash;cluster-enabled yes &ndash;cluster-config-file nodes.conf &ndash;cluster-node-timeout 5000&rdquo;
+networks:
+redisnet:
+ipv4_address: 10.0.0.5
+depends_on:
+- redis-master-3
+redis-slave-2:
+image: redis:5.0.2-alpine
+ports:
+- 7004:7004
+command: sh -c &ldquo;redis-server &ndash;port 7004 &ndash;cluster-enabled yes &ndash;cluster-config-file nodes.conf &ndash;cluster-node-timeout 5000&rdquo;
+networks:
+redisnet:
+ipv4_address: 10.0.0.6
+depends_on:
+- redis-master-3
+redis-slave-3:
+image: redis:5.0.2-alpine
+ports:
+- 7005:7005
+command: sh -c &ldquo;redis-server &ndash;port 7005 &ndash;cluster-enabled yes &ndash;cluster-config-file nodes.conf &ndash;cluster-node-timeout 5000 &ndash;daemonize yes &amp;&amp; yes yes | redis-cli &ndash;cluster create 10.0.0.2:7000 10.0.0.3:7001 10.0.0.4:7002 10.0.0.5:7003 10.0.0.6:7004 10.0.0.7:7005 &ndash;cluster-replicas 1 &amp;&amp; while sleep 3600; do :; done&rdquo;
+networks:
+redisnet:
+ipv4_address: 10.0.0.7
+depends_on:
+- redis-master-1
+- redis-master-2
+- redis-master-3
+- redis-slave-1
+- redis-slave-2
+networks:
+redisnet:
+driver: bridge
+ipam:
+config:
+- subnet: 10.0.0.0/16
+{% endhighlight %}</p>
+<!-- raw HTML omitted -->
+<p>3개 이상의 마스터를 구성 <!-- raw HTML omitted -->
+한쪽 클러스의 영역 ( 마스터, 슬레이브 ) 전부 죽었을 시 Cluster Down으로 <!-- raw HTML omitted -->
+동작되지 않음  CLUSTERDOWN The cluster is down <!-- raw HTML omitted -->
+그 후 슬레이브만 부활했을 때에 자동적으로 Master가 되지 않고 계속 Master를 찾음 ( 결국 전부 다 죽었을 때는 Master가 살아 난 이후 정상 동작임 ) <!-- raw HTML omitted -->
+Master 가 있을 시 Master로만 사용되며 Master가 죽었을 시 Slave가 마스터가 되어 동작함 ( Active - stand by ) <!-- raw HTML omitted --></p>
+<p>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;<!-- raw HTML omitted --></p>
+<p>Redis Cluster를 사용시 Cluster에 대한 Index 정보 ( Hashslot ) 값이 추가로 저장되어야 하기 때문에<!-- raw HTML omitted -->
+사용하는 Data (memory)가 증가하고 리다이렉션이 필요하기 때문에 <!-- raw HTML omitted -->
+샤딩이 필요없는 소규모에는 Sentinel 사용이 좋을듯</p>
+<!-- raw HTML omitted -->
+
+        </div>
+
+        
+        
+
+        
+      <hr />
+        <div class="row next-prev-navigator">
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+      <div class="col-md-6 previous-article">
+        <a href="/posts/tech/2019/2019-04-08-redis-warning/" class="btn btn-outline-info">
+          <span><i class="fas fa-chevron-circle-left"></i> Prev</span>
+          <br />
+          <span>Redis Warning 해결</span>
+        </a>
+      </div>
+      
+    
+    
+      
+        
+        
+          
+              
+          
+        
+        <div class="col-md-6 next-article">
+          <a href="/posts/tech/2019/2019-03-05-spark-cluster/" class="btn btn-outline-info">
+            <span>Next <i class="fas fa-chevron-circle-right"></i></span>
+            <br />
+            <span>Spark Cluster Docker Compose Yaml</span>
+          </a>
+        </div>
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+</div>
+
+      <hr />
+      
+      
+      </div>
+    </div>
+  </div>
+  
+</section>
+
+
+      
+      
+  <section class="toc-section" id="toc-section">
+    
+  </section>
+
+    </div>
+
+    
+
+  
+
+
+
+
+  
+
+
+
+
+  
+  
+    
+  
+
+
+<footer class="container-fluid text-center align-content-center footer pb-2">
+  <div class="container pt-5">
+    <div class="row text-left">
+      <div class="col-md-4 col-sm-12">
+        <h5>Navigation</h5>
+        
+        <ul>
+            
+              
+              
+                
+              
+              <li class="nav-item">
+                <a class="smooth-scroll" href="#about">About</a>
+              </li>
+            
+            
+              
+              
+                
+              
+              <li class="nav-item">
+                <a class="smooth-scroll" href="#skills">Skills</a>
+              </li>
+            
+        </ul>
+        
+
+      </div>
+      
+      <div class="col-md-4 col-sm-12">
+        <h5>Contact me:</h5>
+        <ul>
+          
+          <li><span>Email: </span> <span>gym1029@gmail.com</span></li>
+          
+          <li><span>Phone: </span> <span>&#43;0123456789</span></li>
+          
+        </ul>
+      </div>
+      
+      
+    </div>
+  </div>
+  <hr />
+  <div class="container">
+    <div class="row text-left">
+      <div class="col-md-4">
+        <a id="theme" href="https://github.com/hossainemruz/toha" target="#">
+          <img src="/assets/images/inverted-logo.png">
+          Toha
+        </a>
+      </div>
+      <div class="col-md-4 text-center">© 2020 Copyright.</div>
+      <div class="col-md-4 text-right">
+        <a id="hugo" href="https://gohugo.io/">Powered by
+        <img
+          src="/assets/images/hugo-logo-wide.svg"
+          alt="Hugo Logo"
+          height="18"
+        />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+
+<script src="/assets/js/navbar.js"></script>
+<script src="/assets/js/main.js"></script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script src="/assets/js/single.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+
+
+  </body>
+</html>

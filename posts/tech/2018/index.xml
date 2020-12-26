@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tech 2018 on My Site</title>
+    <link>https://mason-ko.github.io/posts/tech/2018/</link>
+    <description>Recent content in Tech 2018 on My Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 28 Dec 2018 16:42:46 +0900</lastBuildDate><atom:link href="https://mason-ko.github.io/posts/tech/2018/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis Replication Docker로 설치</title>
+      <link>https://mason-ko.github.io/posts/tech/2018/2018-12-28-redis-replication-on-docker/</link>
+      <pubDate>Fri, 28 Dec 2018 16:42:46 +0900</pubDate>
+      
+      <guid>https://mason-ko.github.io/posts/tech/2018/2018-12-28-redis-replication-on-docker/</guid>
+      <description>{% highlight Kconfig %} sudo systemctl stop firewalld sudo systemctl disable firewalld sudo setenforce 0 {% endhighlight %}
+{% highlight Kconfig %} yum install -y docker sudo curl -L &amp;ldquo;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&amp;rdquo; -o /usr/local/bin/docker-compose sudo chmod +x /usr/local/bin/docker-compose {% endhighlight %}
+ redis.conf 만듬 Redis Stable Config 복사 protected-mode 사용중일 때 비밀번호 필요하며 Docker 외부에서 사용가능하도록 bind 주석 처리 각 slave config에 master 정보 추가  {% highlight Kconfig %} mkdir .</description>
+    </item>
+    
+    <item>
+      <title>Redis Sentinel Docker로 설치</title>
+      <link>https://mason-ko.github.io/posts/tech/2018/2018-12-28-redis-sentinel-on-docker/</link>
+      <pubDate>Fri, 28 Dec 2018 16:42:46 +0900</pubDate>
+      
+      <guid>https://mason-ko.github.io/posts/tech/2018/2018-12-28-redis-sentinel-on-docker/</guid>
+      <description>{% highlight Kconfig %} sudo systemctl stop firewalld sudo systemctl disable firewalld sudo setenforce 0 {% endhighlight %}
+{% highlight Kconfig %} yum install -y docker sudo curl -L &amp;ldquo;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&amp;rdquo; -o /usr/local/bin/docker-compose sudo chmod +x /usr/local/bin/docker-compose {% endhighlight %}
+sentinel.conf 만듬
+{% highlight Kconfig %} mkdir ./sentinel1 ./sentinel2 ./sentinel3
+echo &amp;lsquo;sentinel monitor mymaster 10.0.0.1 7000 2&amp;rsquo; &amp;raquo; sentinel.conf echo &amp;lsquo;sentinel down-after-milliseconds mymaster 5000&amp;rsquo; &amp;raquo; sentinel.conf echo &amp;lsquo;sentinel failover-timeout mymaster 7000&amp;rsquo; &amp;raquo; sentinel.</description>
+    </item>
+    
+    <item>
+      <title>Ambrai 설치</title>
+      <link>https://mason-ko.github.io/posts/tech/2018/2018-12-07-abmari-install/</link>
+      <pubDate>Fri, 07 Dec 2018 11:08:46 +0900</pubDate>
+      
+      <guid>https://mason-ko.github.io/posts/tech/2018/2018-12-07-abmari-install/</guid>
+      <description>Install Environment Windows 10 VM 환경 {% highlight Kconfig %} sudo systemctl stop firewalld sudo systemctl disable firewalld sudo setenforce 0 {% endhighlight %}
+Server {% highlight Kconfig %} sudo hostnamectl set-hostname server1.kr {% endhighlight %} Agent {% highlight Kconfig %} sudo hostnamectl set-hostname agent1.kr {% endhighlight %}
+{% highlight Kconfig %} sudo yum install -y java-1.8.0-openjdk wget {% endhighlight %}
+{% highlight Kconfig %} sudo wget -nv http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.2/ambari.repo -O /etc/yum.</description>
+    </item>
+    
+  </channel>
+</rss>
