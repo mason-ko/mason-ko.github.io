@@ -5,5 +5,8 @@ copyright: © 2020 Copyright.
 description: Portfolio and personal blog of Mason Ko.
 
 customMenus:
+  - name: Blog Posts
+    url: /posts
+
   - name: Old Portpolio
     url: https://myportpolio.mason-ko.now.sh/
