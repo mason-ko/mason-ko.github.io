@@ -2,17 +2,18 @@
 layout: post
 title:  "Spark Cluster Docker Compose Yaml"
 date:   2019-03-05 14:00:00 +0900
-categories: tech docker
-permalink: /tech/docker/:title
+menu:
+  sidebar:
+    name: Spark Cluster Docker Compose Yaml
+    parent: 2019
+    weight: 10
 ---
 
-<h2>
-Docker Compose File
-</h2>
+## Docker Compose File
 
 docker-compose.yaml
 
-{% highlight Kconfig %}
+```
 version: "3.0"
 services:
   spark-master:
@@ -44,10 +45,8 @@ services:
     environment:
       - "SPARK_MASTER=spark://spark-master:7077"
       - "constraint:node==<yourworkernode>"
-{% endhighlight %}
+```
 
-<h2>
-Info
-</h2>
+## Info
 
-Spark Master - Worker <br/>
+Spark Master - Worker  

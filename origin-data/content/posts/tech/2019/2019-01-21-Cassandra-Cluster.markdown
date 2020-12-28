@@ -2,17 +2,18 @@
 layout: post
 title:  "Cassandra Cluster Docker Compose Yaml"
 date:   2019-01-21 11:00:00 +0900
-categories: tech docker
-permalink: /tech/docker/:title
+menu:
+  sidebar:
+    name: Cassandra Cluster Docker Compose Yaml
+    parent: 2019
+    weight: 10
 ---
 
-<h2>
-Docker Compose File
-</h2>
+## Docker Compose File
 
 docker-compose.yaml
 
-{% highlight Kconfig %}
+```
 version: '2'
 services:
   cassandra1:
@@ -85,23 +86,21 @@ networks:
       config:
         - subnet: 10.5.0.0/16
           gateway: 10.5.0.1
-{% endhighlight %}
+```
 
-<h2>
-Info
-</h2>
+## Info
 
-Cluster 사용시 아래 환경변수로 사용시 <br/> 
-docker-compose up -d 이후 <br/>
-cassandra.yaml 파일의 broadcast_address 부분을 주석처리해야함 <br/>
+Cluster 사용시 아래 환경변수로 사용시   
+docker-compose up -d 이후  
+cassandra.yaml 파일의 broadcast_address 부분을 주석처리해야함  
 
 실행 후
 
-{% highlight Kconfig %}
+```
 docker exec -it docker_cassandra_1 sed -i 's/broadcast_address:/#broadcast_address:/' /etc/cassandra/cassandra.yaml
 docker exec -it docker_cassandra_2 sed -i 's/broadcast_address:/#broadcast_address:/' /etc/cassandra/cassandra.yaml
 docker exec -it docker_cassandra_3 sed -i 's/broadcast_address:/#broadcast_address:/' /etc/cassandra/cassandra.yaml
 docker-compose -f docker.yaml restart
-{% endhighlight %}
+```
 
 필요

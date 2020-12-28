@@ -2,15 +2,17 @@
 layout: post
 title:  "gRPC Gateway 를 사용하여 gin 에 띄웠을때 Marshaler 커스텀"
 date:   2020-12-16 19:32:00 +0900
-categories: tech grpc
-permalink: /tech/grpc/:title
+menu:
+  sidebar:
+    name: gRPC Gateway 를 사용하여 gin 에 띄웠을때 Marshaler 커스텀
+    parent: 2020
+    weight: 10
 ---
 
-<h2>
-Custom Mashlaer 생성 
-</h2>
+## Custom Mashlaer 생성 
 
-{% highlight Kconfig %}
+{{< highlight go >}}
+
 type myMarshaler struct {
 	JSONPb *runtime.JSONPb
 }
@@ -23,14 +25,11 @@ func NewMyMarshaler() runtime.ServeMuxOption {
 	return runtime.WithMarshalerOption(runtime.MIMEWildcard, m)
 }
 
-{% endhighlight %}
+{{< /highlight >}}
 
-<h2>
-JSONPb interface 구현
-</h2>
+## JSONPb interface 구현
 
-{% highlight Kconfig %}
-
+{{< highlight go >}}
 func (m customMarshaler) Marshal(v interface{}) ([]byte, error) {
     return m.JSONPb.Marshal(v)
 }
@@ -51,26 +50,22 @@ func (m myMarshaler) ContentType() string {
 	return m.JSONPb.ContentType()
 }
 
-{% endhighlight %}
+{{< /highlight >}}
 
 필요한 부분 변경
 
-<h2>
-mux 생성 시 Custom Marshaler 등록
-</h2>
+## mux 생성 시 Custom Marshaler 등록
 
-{% highlight Kconfig %}
+{{< highlight go >}}
 mux := runtime.NewServeMux(
     NewMyMarshaler(),
 )
 
-{% endhighlight %}
+{{< /highlight >}}
 
-<h2>
-grpc gate way 등록
-</h2>
+## grpc gate way 등록
 
-{% highlight Kconfig %}
+{{< highlight go >}}
 opts := []grpc.DialOption{grpc.WithInsecure()}
 err := gw.RegisterSampleServiceHandlerFromEndpoint(
     context.Background(),
@@ -82,13 +77,11 @@ if err != nil {
     panic(err)
 }
 
-{% endhighlight %}
+{{< /highlight >}}
 
-<h3>
-Reference
-</h3>
+#### Reference
 
-[grpc_gateway] <br/>
+[grpc_gateway]  
 
 [grpc_gateway]: https://github.com/grpc-ecosystem/grpc-gateway
 

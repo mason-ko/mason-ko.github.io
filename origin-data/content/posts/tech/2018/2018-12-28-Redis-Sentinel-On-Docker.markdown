@@ -2,43 +2,41 @@
 layout: post
 title:  "Redis Sentinel Docker로 설치"
 date:   2018-12-28 16:42:46 +0900
-categories: tech docker
-permalink: /tech/docker/:title
+author:
+  name: Mason Ko
+  image: /images/author/man.png
+menu:
+  sidebar:
+    name: Redis Sentinel Docker로 설치
+    parent: 2018
+    weight: 10
 ---
 
-<h2>
-Install Environment
-</h2>
+## Install Environment
 
-<p>CentOs 7</p>
+###### CentOs 7
 
-<h2>
-방화벽 해제 
-</h2>
+## 방화벽 해제 
 
-{% highlight Kconfig %}
+```
 sudo systemctl stop firewalld
 sudo systemctl disable firewalld 
 sudo setenforce 0
-{% endhighlight %}
+```
 
-<h2>
-Install Docker & Docker Compose
-</h2>
+## Install Docker & Docker Compose
 
-{% highlight Kconfig %}
+```
 yum install -y docker
 sudo curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-{% endhighlight %}
+```
 
-<h2>
-Redis Sentinel Config File 준비
-</h2>
+## Redis Sentinel Config File 준비
 
 sentinel.conf 만듬
 
-{% highlight Kconfig %}
+```
 mkdir ./sentinel1 ./sentinel2 ./sentinel3
  
 echo 'sentinel monitor mymaster 10.0.0.1 7000 2' >> sentinel.conf
@@ -49,15 +47,13 @@ echo 'sentinel auth-pass mymaster password' >> sentinel.conf
 cp -rf sentinel.conf ./sentinel1/sentinel.conf
 cp -rf sentinel.conf ./sentinel2/sentinel.conf
 cp -rf sentinel.conf ./sentinel3/sentinel.conf
-{% endhighlight %}
+```
 
-<h2>
-Docker Compose File
-</h2>
+## Docker Compose File
 
 docker-compose.yaml
 
-{% highlight Kconfig %}
+```
 version: "3.1"
 services:
   redissen1:
@@ -84,19 +80,17 @@ services:
     volumes:
       - ./sentinel3:/etc/redis
     container_name: redissen3
-{% endhighlight %}
+```
 
-<h2>
-Info
-</h2>
+## Info
 
-초기 설정되어있는 Master로 필수 설정임<br/>
-그 후 센티널 끼리 연결이 된 이후<br/>
-페일오버 시 Slave가 마스터로 변했을때 그 마스터 정보로<br/>
-Config가 변경이 됨<br/>
+초기 설정되어있는 Master로 필수 설정임  
+그 후 센티널 끼리 연결이 된 이후  
+페일오버 시 Slave가 마스터로 변했을때 그 마스터 정보로  
+Config가 변경이 됨  
 
-<h3>참고</h3>
-[레디스 센티널 예제(Redis Sentinel)] <br/>
+#### 참고
+[레디스 센티널 예제(Redis Sentinel)]  
 [Sentinel 센티널 시작하기]
 
 [레디스 센티널 예제(Redis Sentinel)]: https://jdm.kr/blog/159
