@@ -3,11 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://mason-ko.github.io/categories/</loc>
-    <lastmod>2020-12-16T19:32:00+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mason-ko.github.io/posts/tech/2020/2020-12-16-custom-mashaler-grpc-gateway/</loc>
     <lastmod>2020-12-16T19:32:00+09:00</lastmod>
   </url>
@@ -33,22 +28,12 @@
   </url>
   
   <url>
-    <loc>https://mason-ko.github.io/categories/tech-grpc/</loc>
-    <lastmod>2020-12-16T19:32:00+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mason-ko.github.io/posts/tech/2019/2019-05-17-docker-debug-with-rider/</loc>
     <lastmod>2019-05-17T11:03:00+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://mason-ko.github.io/posts/tech/2019/</loc>
-    <lastmod>2019-05-17T11:03:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mason-ko.github.io/categories/tech-docker/</loc>
     <lastmod>2019-05-17T11:03:00+09:00</lastmod>
   </url>
   
@@ -105,6 +90,10 @@
   <url>
     <loc>https://mason-ko.github.io/posts/tech/2018/2018-12-07-abmari-install/</loc>
     <lastmod>2018-12-07T11:08:46+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mason-ko.github.io/categories/</loc>
   </url>
   
   <url>

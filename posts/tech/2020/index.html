@@ -98,7 +98,18 @@
   
   
     
-    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">2018</a></li>
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2018/">2018</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">Ambrai 설치</a></li>
   
 
   
@@ -107,7 +118,109 @@
   
   
     
-    <li><a class="" href="/posts/tech/2019/">2019</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-replication-on-docker/">Redis Replication Docker로 설치</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-sentinel-on-docker/">Redis Sentinel Docker로 설치</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2019/">2019</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-01-21-cassandra-cluster/">Cassandra Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-cassandra-commit-log-error/">Cassandra Commit log 충돌로 인한 Restart 불가 현상</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-05-17-docker-debug-with-rider/">Docker Debug With Rider</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-02-15-kafka-cluster/">Kafka Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-20-redis-cluster/">Redis Cluster</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-redis-warning/">Redis Warning 해결</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-spark-cluster/">Spark Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-zeppelin/">Zeppelin Docker Compose Yaml</a></li>
+  
+
+
+      </ul>
+    </li>
   
 
   
@@ -119,7 +232,23 @@
   
   
     
-    <li><a class="active" href="/posts/tech/2020/">2020</a></li>
+    <li>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/2020/">2020</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2020/2020-12-16-custom-mashaler-grpc-gateway/">gRPC Gateway 를 사용하여 gin 에 띄웠을때 Marshaler 커스텀</a></li>
+  
+
+
+      </ul>
+    </li>
   
 
 
@@ -151,14 +280,7 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">gRPC Gateway 를 사용하여 gin 에 띄웠을때 Marshaler 커스텀</h5>
-        <p class="card-text post-summary">{% highlight Kconfig %} type myMarshaler struct { JSONPb *runtime.JSONPb }
-func NewMyMarshaler() runtime.ServeMuxOption { m := myMarshaler{ JSONPb: &amp;runtime.JSONPb{OrigName: true, EmitDefaults: true}, }
-return runtime.WithMarshalerOption(runtime.MIMEWildcard, m) }
-{% endhighlight %}
-{% highlight Kconfig %}
-func (m customMarshaler) Marshal(v interface{}) ([]byte, error) { return m.JSONPb.Marshal(v) }
-func (m myMarshaler) Unmarshal(data []byte, v interface{}) error { return m.JSONPb.Unmarshal(data, v) }
-func (m myMarshaler) NewDecoder(r io.Reader) runtime.Decoder { return m.JSONPb.NewDecoder(r) }</p>
+        <p class="card-text post-summary">Custom Mashlaer 생성 type myMarshaler struct { JSONPb *runtime.JSONPb } func NewMyMarshaler() runtime.ServeMuxOption { m := myMarshaler{ JSONPb: &amp;runtime.JSONPb{OrigName: true, EmitDefaults: true}, } return runtime.WithMarshalerOption(runtime.MIMEWildcard, m) }  JSONPb interface 구현 func (m customMarshaler) Marshal(v interface{}) ([]byte, error) { return m.JSONPb.Marshal(v) } func (m myMarshaler) Unmarshal(data []byte, v interface{}) error { return m.JSONPb.Unmarshal(data, v) } func (m myMarshaler) NewDecoder(r io.Reader) runtime.Decoder { return m.JSONPb.NewDecoder(r) } func (m myMarshaler) NewEncoder(w io.Writer) runtime.</p>
       </div>
       <div class="card-footer">
         <span class="float-left">December 16, 2020</span>

@@ -84,10 +84,73 @@
   
   
   
+    
+    
+  
   
     
     <li>
-      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/">Tech</a>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/">Tech</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/2018/">2018</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">Ambrai 설치</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-replication-on-docker/">Redis Replication Docker로 설치</a></li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li><a class="active" href="/posts/tech/2018/2018-12-28-redis-sentinel-on-docker/">Redis Sentinel Docker로 설치</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2019/">2019</a>
       
       <ul class="">
         
@@ -97,7 +160,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">2018</a></li>
+    <li><a class="" href="/posts/tech/2019/2019-01-21-cassandra-cluster/">Cassandra Cluster Docker Compose Yaml</a></li>
   
 
   
@@ -106,7 +169,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2019/">2019</a></li>
+    <li><a class="" href="/posts/tech/2019/2019-04-08-cassandra-commit-log-error/">Cassandra Commit log 충돌로 인한 Restart 불가 현상</a></li>
   
 
   
@@ -115,7 +178,82 @@
   
   
     
-    <li><a class="" href="/posts/tech/2020/">2020</a></li>
+    <li><a class="" href="/posts/tech/2019/2019-05-17-docker-debug-with-rider/">Docker Debug With Rider</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-02-15-kafka-cluster/">Kafka Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-20-redis-cluster/">Redis Cluster</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-redis-warning/">Redis Warning 해결</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-spark-cluster/">Spark Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-zeppelin/">Zeppelin Docker Compose Yaml</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2020/">2020</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2020/2020-12-16-custom-mashaler-grpc-gateway/">gRPC Gateway 를 사용하여 gin 에 띄웠을때 Marshaler 커스텀</a></li>
+  
+
+
+      </ul>
+    </li>
   
 
 
@@ -154,68 +292,64 @@
         </div>
 
         <div class="post-content" id="post-content">
-          <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-sudo systemctl stop firewalld
+          <h2 id="install-environment">Install Environment</h2>
+<h6 id="centos-7">CentOs 7</h6>
+<h2 id="방화벽-해제">방화벽 해제</h2>
+<pre><code>sudo systemctl stop firewalld
 sudo systemctl disable firewalld 
 sudo setenforce 0
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-yum install -y docker
-sudo curl -L &ldquo;<a href="https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname">https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname</a> -s)-$(uname -m)&rdquo; -o /usr/local/bin/docker-compose
+</code></pre><h2 id="install-docker--docker-compose">Install Docker &amp; Docker Compose</h2>
+<pre><code>yum install -y docker
+sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
+</code></pre><h2 id="redis-sentinel-config-file-준비">Redis Sentinel Config File 준비</h2>
 <p>sentinel.conf 만듬</p>
-<p>{% highlight Kconfig %}
-mkdir ./sentinel1 ./sentinel2 ./sentinel3</p>
-<p>echo &lsquo;sentinel monitor mymaster 10.0.0.1 7000 2&rsquo; &raquo; sentinel.conf
-echo &lsquo;sentinel down-after-milliseconds mymaster 5000&rsquo; &raquo; sentinel.conf
-echo &lsquo;sentinel failover-timeout mymaster 7000&rsquo; &raquo; sentinel.conf
-echo &lsquo;sentinel auth-pass mymaster password&rsquo; &raquo; sentinel.conf</p>
-<p>cp -rf sentinel.conf ./sentinel1/sentinel.conf
+<pre><code>mkdir ./sentinel1 ./sentinel2 ./sentinel3
+ 
+echo 'sentinel monitor mymaster 10.0.0.1 7000 2' &gt;&gt; sentinel.conf
+echo 'sentinel down-after-milliseconds mymaster 5000' &gt;&gt; sentinel.conf
+echo 'sentinel failover-timeout mymaster 7000' &gt;&gt; sentinel.conf
+echo 'sentinel auth-pass mymaster password' &gt;&gt; sentinel.conf
+ 
+cp -rf sentinel.conf ./sentinel1/sentinel.conf
 cp -rf sentinel.conf ./sentinel2/sentinel.conf
 cp -rf sentinel.conf ./sentinel3/sentinel.conf
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
+</code></pre><h2 id="docker-compose-file">Docker Compose File</h2>
 <p>docker-compose.yaml</p>
-<p>{% highlight Kconfig %}
-version: &ldquo;3.1&rdquo;
+<pre><code>version: &quot;3.1&quot;
 services:
-redissen1:
-image: redis:5.0.2-alpine
-ports:
-- 17000:17000
-command: sh -c &ldquo;redis-sentinel /etc/redis/sentinel.conf &ndash;port 17000&rdquo;
-volumes:
-- ./sentinel1:/etc/redis
-container_name: redissen1
-redissen2:
-image: redis:5.0.2-alpine
-ports:
-- 17001:17001
-command: sh -c &ldquo;redis-sentinel /etc/redis/sentinel.conf &ndash;port 17001&rdquo;
-volumes:
-- ./sentinel2:/etc/redis
-container_name: redissen2
-redissen3:
-image: redis:5.0.2-alpine
-ports:
-- 17002:17002
-command: sh -c &ldquo;redis-sentinel /etc/redis/sentinel.conf &ndash;port 17002&rdquo;
-volumes:
-- ./sentinel3:/etc/redis
-container_name: redissen3
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>초기 설정되어있는 Master로 필수 설정임<!-- raw HTML omitted -->
-그 후 센티널 끼리 연결이 된 이후<!-- raw HTML omitted -->
-페일오버 시 Slave가 마스터로 변했을때 그 마스터 정보로<!-- raw HTML omitted -->
-Config가 변경이 됨<!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
+  redissen1:
+    image: redis:5.0.2-alpine
+    ports:
+      - 17000:17000
+    command: sh -c &quot;redis-sentinel /etc/redis/sentinel.conf --port 17000&quot;
+    volumes:
+      - ./sentinel1:/etc/redis
+    container_name: redissen1
+  redissen2:
+    image: redis:5.0.2-alpine
+    ports:
+      - 17001:17001
+    command: sh -c &quot;redis-sentinel /etc/redis/sentinel.conf --port 17001&quot;
+    volumes:
+      - ./sentinel2:/etc/redis
+    container_name: redissen2
+  redissen3:
+    image: redis:5.0.2-alpine
+    ports:
+      - 17002:17002
+    command: sh -c &quot;redis-sentinel /etc/redis/sentinel.conf --port 17002&quot;
+    volumes:
+      - ./sentinel3:/etc/redis
+    container_name: redissen3
+</code></pre><h2 id="info">Info</h2>
+<p>초기 설정되어있는 Master로 필수 설정임<br>
+그 후 센티널 끼리 연결이 된 이후<br>
+페일오버 시 Slave가 마스터로 변했을때 그 마스터 정보로<br>
+Config가 변경이 됨</p>
+<h4 id="참고">참고</h4>
+<p><a href="https://jdm.kr/blog/159">레디스 센티널 예제(Redis Sentinel)</a><br>
+<a href="http://redisgate.jp/redis/sentinel/sentinel.php">Sentinel 센티널 시작하기</a></p>
 
         </div>
 

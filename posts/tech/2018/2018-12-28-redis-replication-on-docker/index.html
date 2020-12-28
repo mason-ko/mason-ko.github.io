@@ -84,10 +84,73 @@
   
   
   
+    
+    
+  
   
     
     <li>
-      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/">Tech</a>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/">Tech</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/2018/">2018</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">Ambrai 설치</a></li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li><a class="active" href="/posts/tech/2018/2018-12-28-redis-replication-on-docker/">Redis Replication Docker로 설치</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-sentinel-on-docker/">Redis Sentinel Docker로 설치</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2019/">2019</a>
       
       <ul class="">
         
@@ -97,7 +160,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">2018</a></li>
+    <li><a class="" href="/posts/tech/2019/2019-01-21-cassandra-cluster/">Cassandra Cluster Docker Compose Yaml</a></li>
   
 
   
@@ -106,7 +169,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2019/">2019</a></li>
+    <li><a class="" href="/posts/tech/2019/2019-04-08-cassandra-commit-log-error/">Cassandra Commit log 충돌로 인한 Restart 불가 현상</a></li>
   
 
   
@@ -115,7 +178,82 @@
   
   
     
-    <li><a class="" href="/posts/tech/2020/">2020</a></li>
+    <li><a class="" href="/posts/tech/2019/2019-05-17-docker-debug-with-rider/">Docker Debug With Rider</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-02-15-kafka-cluster/">Kafka Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-20-redis-cluster/">Redis Cluster</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-redis-warning/">Redis Warning 해결</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-spark-cluster/">Spark Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-zeppelin/">Zeppelin Docker Compose Yaml</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2020/">2020</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2020/2020-12-16-custom-mashaler-grpc-gateway/">gRPC Gateway 를 사용하여 gin 에 띄웠을때 Marshaler 커스텀</a></li>
+  
+
+
+      </ul>
+    </li>
   
 
 
@@ -154,21 +292,17 @@
         </div>
 
         <div class="post-content" id="post-content">
-          <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-sudo systemctl stop firewalld
+          <h2 id="install-environment">Install Environment</h2>
+<h6 id="centos-7">CentOs 7</h6>
+<h2 id="방화벽-해제">방화벽 해제</h2>
+<pre><code>sudo systemctl stop firewalld
 sudo systemctl disable firewalld 
 sudo setenforce 0
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-yum install -y docker
-sudo curl -L &ldquo;<a href="https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname">https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname</a> -s)-$(uname -m)&rdquo; -o /usr/local/bin/docker-compose
+</code></pre><h2 id="install-docker--docker-compose">Install Docker &amp; Docker Compose</h2>
+<pre><code>yum install -y docker
+sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
+</code></pre><h2 id="redis-replication-config-file-준비">Redis Replication Config File 준비</h2>
 <ol>
 <li>redis.conf 만듬</li>
 <li>Redis Stable Config 복사</li>
@@ -176,72 +310,72 @@ sudo chmod +x /usr/local/bin/docker-compose
 <li>Docker 외부에서 사용가능하도록 bind 주석 처리</li>
 <li>각 slave config에 master 정보 추가</li>
 </ol>
-<p>{% highlight Kconfig %}
-mkdir ./s1 ./s2 ./s3
-wget <a href="http://download.redis.io/redis-stable/redis.conf">http://download.redis.io/redis-stable/redis.conf</a>
-sed -i &ldquo;s/bind 127.0.0.1/#bind 127.0.0.1/&rdquo; redis.conf
-echo &lsquo;masterauth &ldquo;password&rdquo;&rsquo; &raquo; redis.conf
-echo &lsquo;requirepass &ldquo;password&rdquo;&rsquo; &raquo; redis.conf</p>
-<p>cp -rf redis.conf ./s1/redis.conf
+<pre><code>mkdir ./s1 ./s2 ./s3
+wget http://download.redis.io/redis-stable/redis.conf
+sed -i &quot;s/bind 127.0.0.1/#bind 127.0.0.1/&quot; redis.conf
+echo 'masterauth &quot;password&quot;' &gt;&gt; redis.conf
+echo 'requirepass &quot;password&quot;' &gt;&gt; redis.conf
+
+cp -rf redis.conf ./s1/redis.conf
 cp -rf redis.conf ./s2/redis.conf
-cp -rf redis.conf ./s3/redis.conf</p>
-<p>echo &lsquo;slaveof 10.0.0.1 7000&rsquo; &raquo; ./s2/redis.conf
-echo &lsquo;slaveof 10.0.0.1 7000&rsquo; &raquo; ./s3/redis.conf
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
+cp -rf redis.conf ./s3/redis.conf
+ 
+echo 'slaveof 10.0.0.1 7000' &gt;&gt; ./s2/redis.conf
+echo 'slaveof 10.0.0.1 7000' &gt;&gt; ./s3/redis.conf
+</code></pre><h2 id="docker-compose-file">Docker Compose File</h2>
 <p>docker-compose.yaml</p>
-<p>{% highlight Kconfig %}
-version: &ldquo;3.1&rdquo;
+<pre><code>version: &quot;3.1&quot;
 services:
-redismaster1:
-image: redis:5.0.2-alpine
-ports:
-- 7000:7000
-command: sh -c &ldquo;redis-server /etc/redis/redis.conf &ndash;port 7000&rdquo;
-container_name: redismaster1
-volumes:
-- ./s1:/etc/redis
+  redismaster1:
+    image: redis:5.0.2-alpine
+    ports:
+      - 7000:7000
+    command: sh -c &quot;redis-server /etc/redis/redis.conf --port 7000&quot;
+    container_name: redismaster1
+    volumes:
+      - ./s1:/etc/redis
+    networks:
+      redisnet:
+        ipv4_address: 10.0.0.2
+  redisslave1:
+    image: redis:5.0.2-alpine
+    ports:
+      - 7001:7001
+    command: sh -c &quot;redis-server /etc/redis/redis.conf --port 7001&quot;
+    container_name: redisslave1
+    volumes:
+      - ./s2:/etc/redis
+    depends_on:
+      - redismaster1
+    networks:
+      redisnet:
+        ipv4_address: 10.0.0.3
+  redisslave2:
+    image: redis:5.0.2-alpine
+    ports:
+      - 7002:7002
+    command: sh -c &quot;redis-server /etc/redis/redis.conf --port 7002&quot;
+    container_name: redisslave2
+    volumes:
+      - ./s3:/etc/redis
+    depends_on:
+      - redismaster1
+    networks:
+      redisnet:
+        ipv4_address: 10.0.0.4
+ 
 networks:
-redisnet:
-ipv4_address: 10.0.0.2
-redisslave1:
-image: redis:5.0.2-alpine
-ports:
-- 7001:7001
-command: sh -c &ldquo;redis-server /etc/redis/redis.conf &ndash;port 7001&rdquo;
-container_name: redisslave1
-volumes:
-- ./s2:/etc/redis
-depends_on:
-- redismaster1
-networks:
-redisnet:
-ipv4_address: 10.0.0.3
-redisslave2:
-image: redis:5.0.2-alpine
-ports:
-- 7002:7002
-command: sh -c &ldquo;redis-server /etc/redis/redis.conf &ndash;port 7002&rdquo;
-container_name: redisslave2
-volumes:
-- ./s3:/etc/redis
-depends_on:
-- redismaster1
-networks:
-redisnet:
-ipv4_address: 10.0.0.4</p>
-<p>networks:
-redisnet:
-driver: bridge
-ipam:
-config:
-- subnet: 10.0.0.0/16</p>
-<p>{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>slave of 를 통해 초기 slave를 지정 할 수 있음 <!-- raw HTML omitted -->
-서버의 상태 변경 시 target 지정한 conf 값이 변함 <!-- raw HTML omitted -->
-slave가 master로 승격이 될 경우를 대비해서 <!-- raw HTML omitted -->
-master와 slave 구분없이 모든 auto에 대해 공통 단일화 시켜야함 <!-- raw HTML omitted --></p>
+  redisnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/16
+
+</code></pre><h2 id="info">Info</h2>
+<p>slave of 를 통해 초기 slave를 지정 할 수 있음<br>
+서버의 상태 변경 시 target 지정한 conf 값이 변함<br>
+slave가 master로 승격이 될 경우를 대비해서<br>
+master와 slave 구분없이 모든 auto에 대해 공통 단일화 시켜야함</p>
 
         </div>
 

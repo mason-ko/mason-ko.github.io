@@ -84,10 +84,24 @@
   
   
   
+    
+    
+  
   
     
     <li>
-      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/">Tech</a>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/">Tech</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2018/">2018</a>
       
       <ul class="">
         
@@ -97,7 +111,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">2018</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">Ambrai 설치</a></li>
   
 
   
@@ -106,7 +120,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2019/">2019</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-replication-on-docker/">Redis Replication Docker로 설치</a></li>
   
 
   
@@ -115,7 +129,131 @@
   
   
     
-    <li><a class="" href="/posts/tech/2020/">2020</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-sentinel-on-docker/">Redis Sentinel Docker로 설치</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2019/">2019</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-01-21-cassandra-cluster/">Cassandra Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-cassandra-commit-log-error/">Cassandra Commit log 충돌로 인한 Restart 불가 현상</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-05-17-docker-debug-with-rider/">Docker Debug With Rider</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-02-15-kafka-cluster/">Kafka Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-20-redis-cluster/">Redis Cluster</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-redis-warning/">Redis Warning 해결</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-spark-cluster/">Spark Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-zeppelin/">Zeppelin Docker Compose Yaml</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/2020/">2020</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li><a class="active" href="/posts/tech/2020/2020-12-16-custom-mashaler-grpc-gateway/">gRPC Gateway 를 사용하여 gin 에 띄웠을때 Marshaler 커스텀</a></li>
+  
+
+
+      </ul>
+    </li>
   
 
 
@@ -154,59 +292,60 @@
         </div>
 
         <div class="post-content" id="post-content">
-          <!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-type myMarshaler struct {
-JSONPb *runtime.JSONPb
-}</p>
-<p>func NewMyMarshaler() runtime.ServeMuxOption {
-m := myMarshaler{
-JSONPb: &amp;runtime.JSONPb{OrigName: true, EmitDefaults: true},
-}</p>
-<pre><code>return runtime.WithMarshalerOption(runtime.MIMEWildcard, m)
-</code></pre>
-<p>}</p>
-<p>{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}</p>
-<p>func (m customMarshaler) Marshal(v interface{}) ([]byte, error) {
-return m.JSONPb.Marshal(v)
-}</p>
-<p>func (m myMarshaler) Unmarshal(data []byte, v interface{}) error {
-return m.JSONPb.Unmarshal(data, v)
-}</p>
-<p>func (m myMarshaler) NewDecoder(r io.Reader) runtime.Decoder {
-return m.JSONPb.NewDecoder(r)
-}</p>
-<p>func (m myMarshaler) NewEncoder(w io.Writer) runtime.Encoder {
-return m.JSONPb.NewEncoder(w)
-}</p>
-<p>func (m myMarshaler) ContentType() string {
-return m.JSONPb.ContentType()
-}</p>
-<p>{% endhighlight %}</p>
+          <h2 id="custom-mashlaer-생성">Custom Mashlaer 생성</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">myMarshaler</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">JSONPb</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">JSONPb</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewMyMarshaler</span>() <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">ServeMuxOption</span> {
+	<span style="color:#a6e22e">m</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">myMarshaler</span>{
+		<span style="color:#a6e22e">JSONPb</span>: <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">JSONPb</span>{<span style="color:#a6e22e">OrigName</span>: <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">EmitDefaults</span>: <span style="color:#66d9ef">true</span>},
+	}
+
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">WithMarshalerOption</span>(<span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">MIMEWildcard</span>, <span style="color:#a6e22e">m</span>)
+}
+</code></pre></div>
+<h2 id="jsonpb-interface-구현">JSONPb interface 구현</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">m</span> <span style="color:#a6e22e">customMarshaler</span>) <span style="color:#a6e22e">Marshal</span>(<span style="color:#a6e22e">v</span> <span style="color:#66d9ef">interface</span>{}) ([]<span style="color:#66d9ef">byte</span>, <span style="color:#66d9ef">error</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">JSONPb</span>.<span style="color:#a6e22e">Marshal</span>(<span style="color:#a6e22e">v</span>)
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">m</span> <span style="color:#a6e22e">myMarshaler</span>) <span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">data</span> []<span style="color:#66d9ef">byte</span>, <span style="color:#a6e22e">v</span> <span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">error</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">JSONPb</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">v</span>)
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">m</span> <span style="color:#a6e22e">myMarshaler</span>) <span style="color:#a6e22e">NewDecoder</span>(<span style="color:#a6e22e">r</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Reader</span>) <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">Decoder</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">JSONPb</span>.<span style="color:#a6e22e">NewDecoder</span>(<span style="color:#a6e22e">r</span>)
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">m</span> <span style="color:#a6e22e">myMarshaler</span>) <span style="color:#a6e22e">NewEncoder</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>) <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">Encoder</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">JSONPb</span>.<span style="color:#a6e22e">NewEncoder</span>(<span style="color:#a6e22e">w</span>)
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">m</span> <span style="color:#a6e22e">myMarshaler</span>) <span style="color:#a6e22e">ContentType</span>() <span style="color:#66d9ef">string</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">JSONPb</span>.<span style="color:#a6e22e">ContentType</span>()
+}
+</code></pre></div>
 <p>필요한 부분 변경</p>
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-mux := runtime.NewServeMux(
-NewMyMarshaler(),
-)</p>
-<p>{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-opts := []grpc.DialOption{grpc.WithInsecure()}
-err := gw.RegisterSampleServiceHandlerFromEndpoint(
-context.Background(),
-mux,
-fmt.Sprintf(&quot;%s:%s&quot;, host, port),
-opts,
+<h2 id="mux-생성-시-custom-marshaler-등록">mux 생성 시 Custom Marshaler 등록</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">mux</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">NewServeMux</span>(
+    <span style="color:#a6e22e">NewMyMarshaler</span>(),
 )
-if err != nil {
-panic(err)
-}</p>
-<p>{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p><a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc_gateway</a> <!-- raw HTML omitted --></p>
+</code></pre></div>
+<h2 id="grpc-gate-way-등록">grpc gate way 등록</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">opts</span> <span style="color:#f92672">:=</span> []<span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">DialOption</span>{<span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">WithInsecure</span>()}
+<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gw</span>.<span style="color:#a6e22e">RegisterSampleServiceHandlerFromEndpoint</span>(
+    <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(),
+	<span style="color:#a6e22e">mux</span>,
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;%s:%s&#34;</span>, <span style="color:#a6e22e">host</span>, <span style="color:#a6e22e">port</span>),
+    <span style="color:#a6e22e">opts</span>,
+)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    panic(<span style="color:#a6e22e">err</span>)
+}
+</code></pre></div>
+<h4 id="reference">Reference</h4>
+<p><a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc_gateway</a></p>
 
         </div>
 

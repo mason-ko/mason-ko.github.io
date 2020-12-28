@@ -98,7 +98,41 @@
   
   
     
-    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">2018</a></li>
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2018/">2018</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">Ambrai 설치</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-replication-on-docker/">Redis Replication Docker로 설치</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-sentinel-on-docker/">Redis Sentinel Docker로 설치</a></li>
+  
+
+
+      </ul>
+    </li>
   
 
   
@@ -110,7 +144,18 @@
   
   
     
-    <li><a class="active" href="/posts/tech/2019/">2019</a></li>
+    <li>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/2019/">2019</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-01-21-cassandra-cluster/">Cassandra Cluster Docker Compose Yaml</a></li>
   
 
   
@@ -119,7 +164,91 @@
   
   
     
-    <li><a class="" href="/posts/tech/2020/">2020</a></li>
+    <li><a class="" href="/posts/tech/2019/2019-04-08-cassandra-commit-log-error/">Cassandra Commit log 충돌로 인한 Restart 불가 현상</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-05-17-docker-debug-with-rider/">Docker Debug With Rider</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-02-15-kafka-cluster/">Kafka Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-20-redis-cluster/">Redis Cluster</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-redis-warning/">Redis Warning 해결</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-spark-cluster/">Spark Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-zeppelin/">Zeppelin Docker Compose Yaml</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2020/">2020</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2020/2020-12-16-custom-mashaler-grpc-gateway/">gRPC Gateway 를 사용하여 gin 에 띄웠을때 Marshaler 커스텀</a></li>
+  
+
+
+      </ul>
+    </li>
   
 
 
@@ -151,15 +280,8 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">Docker Debug With Rider</h5>
-        <p class="card-text post-summary">![My helpful screenshot]({{ &ldquo;/assets/20190517/capture1.png&rdquo; | absolute_url }}) ![My helpful screenshot]({{ &ldquo;/assets/20190517/capture2.png&rdquo; | absolute_url }})
-{% highlight Kconfig %} FROM microsoft/dotnet:2.1-aspnetcore-runtime as base
-FROM microsoft/dotnet:2.1-sdk as build WORKDIR /src
-COPY ConsoleApp1/ConsoleApp1.csproj ConsoleApp1/
-RUN dotnet restore ConsoleApp1/ConsoleApp1.csproj
-COPY . . WORKDIR /src/ConsoleApp1
-RUN dotnet build ConsoleApp1.csproj -c Release -o /app
-FROM build as publish RUN dotnet publish ConsoleApp1.csproj -c Release -o /app
-FROM base AS final WORKDIR /app COPY &ndash;from=publish /app .</p>
+        <p class="card-text post-summary">1. Rider에서 Docker 사용 ![My helpful screenshot]({{ &ldquo;/assets/20190517/capture1.png&rdquo; | absolute_url }}) ![My helpful screenshot]({{ &ldquo;/assets/20190517/capture2.png&rdquo; | absolute_url }})
+FROM microsoft/dotnet:2.1-aspnetcore-runtime as base FROM microsoft/dotnet:2.1-sdk as build WORKDIR /src COPY ConsoleApp1/ConsoleApp1.csproj ConsoleApp1/ RUN dotnet restore ConsoleApp1/ConsoleApp1.csproj COPY . . WORKDIR /src/ConsoleApp1 RUN dotnet build ConsoleApp1.csproj -c Release -o /app FROM build as publish RUN dotnet publish ConsoleApp1.csproj -c Release -o /app FROM base AS final WORKDIR /app COPY --from=publish /app . ENTRYPOINT [&quot;dotnet&quot;, &quot;ConsoleApp1.</p>
       </div>
       <div class="card-footer">
         <span class="float-left">May 17, 2019</span>
@@ -182,9 +304,11 @@ FROM base AS final WORKDIR /app COPY &ndash;from=publish /app .</p>
       </div>
       <div class="card-body">
         <h5 class="card-title">Cassandra Commit log 충돌로 인한 Restart 불가 현상</h5>
-        <p class="card-text post-summary">Cassandra가 비정상 종료됬을때 발생.
-Mount된 Commit log 폴더의 내용을 삭제 or ignorereplayerrors 를 true로 줌 {% highlight Kconfig %} Environment
- JVM_OPTS : &ldquo;-Dcassandra.commitlog.ignorereplayerrors=true&rdquo; {% endhighlight %}  </p>
+        <p class="card-text post-summary">원인 Cassandra가 비정상 종료됬을때 발생.
+해결방안 Mount된 Commit log 폴더의 내용을 삭제
+or
+ignorereplayerrors 를 true로 줌
+Environment - JVM_OPTS : &quot;-Dcassandra.commitlog.ignorereplayerrors=true&quot; 참고 cassandra CrashLooping due to invalid commit log</p>
       </div>
       <div class="card-footer">
         <span class="float-left">April 8, 2019</span>
@@ -207,17 +331,12 @@ Mount된 Commit log 폴더의 내용을 삭제 or ignorereplayerrors 를 true로
       </div>
       <div class="card-body">
         <h5 class="card-title">Redis Warning 해결</h5>
-        <p class="card-text post-summary">Host PC에서 실행
-{% highlight Kconfig %} sudo sysctl vm.overcommit_memory=1
-#재부팅시 적용되려면 vi /etc/sysctl.conf
-추가 net.core.somaxconn=1024 {% endhighlight %}
-Host PC에서 실행
-{% highlight Kconfig %} echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled
-#재부팅시 적용되려면 vi /etc/rc.local
-추가 echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled exit 0 {% endhighlight %}
-Docker Compose yaml에 내용 추가 ( 65535 까지 가능 ) sysctls 은 docker compose version 2.1 이상부터 가능함을 확인
-{% highlight Kconfig %} sysctls:
- net.core.somaxconn=1024 {% endhighlight %}  </p>
+        <p class="card-text post-summary">1. overcommit_memory Host PC에서 실행
+sudo sysctl vm.overcommit_memory=1 #재부팅시 적용되려면 vi /etc/sysctl.conf # 추가 net.core.somaxconn=1024 2. THP Disable Host PC에서 실행
+echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled #재부팅시 적용되려면 vi /etc/rc.local # 추가 echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled exit 0 3. TCP Backlog Docker Compose yaml에 내용 추가 ( 65535 까지 가능 )
+sysctls 은 docker compose version 2.1 이상부터 가능함을 확인
+sysctls: - net.core.somaxconn=1024 참고 Redis 설치 후 Warning 제거하기
+Docker Docs</p>
       </div>
       <div class="card-footer">
         <span class="float-left">April 8, 2019</span>
@@ -240,8 +359,8 @@ Docker Compose yaml에 내용 추가 ( 65535 까지 가능 ) sysctls 은 docker 
       </div>
       <div class="card-body">
         <h5 class="card-title">Redis Cluster</h5>
-        <p class="card-text post-summary">docker-compose.yaml
-{% highlight Kconfig %} version: &ldquo;3.1&rdquo; services: redis-master-1: image: redis:5.0.2-alpine ports: - 7000:7000 command: sh -c &ldquo;redis-server &ndash;port 7000 &ndash;cluster-enabled yes &ndash;cluster-config-file nodes.conf &ndash;cluster-node-timeout 5000&rdquo; networks: redisnet: ipv4_address: 10.0.0.2 redis-master-2: image: redis:5.0.2-alpine ports: - 7001:7001 command: sh -c &ldquo;redis-server &ndash;port 7001 &ndash;cluster-enabled yes &ndash;cluster-config-file nodes.conf &ndash;cluster-node-timeout 5000&rdquo; networks: redisnet: ipv4_address: 10.0.0.3 depends_on: - redis-master-1 redis-master-3: image: redis:5.0.2-alpine ports: - 7002:7002 command: sh -c &ldquo;redis-server &ndash;port 7002 &ndash;cluster-enabled yes &ndash;cluster-config-file nodes.</p>
+        <p class="card-text post-summary">Docker Compose File docker-compose.yaml
+version: &quot;3.1&quot; services: redis-master-1: image: redis:5.0.2-alpine ports: - 7000:7000 command: sh -c &quot;redis-server --port 7000 --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000&quot; networks: redisnet: ipv4_address: 10.0.0.2 redis-master-2: image: redis:5.0.2-alpine ports: - 7001:7001 command: sh -c &quot;redis-server --port 7001 --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000&quot; networks: redisnet: ipv4_address: 10.0.0.3 depends_on: - redis-master-1 redis-master-3: image: redis:5.0.2-alpine ports: - 7002:7002 command: sh -c &quot;redis-server --port 7002 --cluster-enabled yes --cluster-config-file nodes.conf --cluster-node-timeout 5000&quot; networks: redisnet: ipv4_address: 10.</p>
       </div>
       <div class="card-footer">
         <span class="float-left">March 20, 2019</span>
@@ -264,9 +383,8 @@ Docker Compose yaml에 내용 추가 ( 65535 까지 가능 ) sysctls 은 docker 
       </div>
       <div class="card-body">
         <h5 class="card-title">Spark Cluster Docker Compose Yaml</h5>
-        <p class="card-text post-summary">docker-compose.yaml
-{% highlight Kconfig %} version: &ldquo;3.0&rdquo; services: spark-master: image: bde2020/spark-master:2.3.2-hadoop2.7 container_name: spark-master ports: - &ldquo;8083:8083&rdquo; - &ldquo;7077:7077&rdquo; environment: - INIT_DAEMON_STEP=setup_spark - &ldquo;constraint:node==&rdquo; spark-worker-1: image: bde2020/spark-worker:2.3.2-hadoop2.7 container_name: spark-worker-1 depends_on: - spark-master ports: - &ldquo;8081:8081&rdquo; environment: - &ldquo;SPARK_MASTER=spark://spark-master:7077&rdquo; - &ldquo;constraint:node==&rdquo; spark-worker-2: image: bde2020/spark-worker:2.3.2-hadoop2.7 container_name: spark-worker-2 depends_on: - spark-master ports: - &ldquo;8082:8082&rdquo; environment: - &ldquo;SPARK_MASTER=spark://spark-master:7077&rdquo; - &ldquo;constraint:node==&rdquo; {% endhighlight %}
-Spark Master - Worker </p>
+        <p class="card-text post-summary">Docker Compose File docker-compose.yaml
+version: &quot;3.0&quot; services: spark-master: image: bde2020/spark-master:2.3.2-hadoop2.7 container_name: spark-master ports: - &quot;8083:8083&quot; - &quot;7077:7077&quot; environment: - INIT_DAEMON_STEP=setup_spark - &quot;constraint:node==&lt;yourmasternode&gt;&quot; spark-worker-1: image: bde2020/spark-worker:2.3.2-hadoop2.7 container_name: spark-worker-1 depends_on: - spark-master ports: - &quot;8081:8081&quot; environment: - &quot;SPARK_MASTER=spark://spark-master:7077&quot; - &quot;constraint:node==&lt;yourmasternode&gt;&quot; spark-worker-2: image: bde2020/spark-worker:2.3.2-hadoop2.7 container_name: spark-worker-2 depends_on: - spark-master ports: - &quot;8082:8082&quot; environment: - &quot;SPARK_MASTER=spark://spark-master:7077&quot; - &quot;constraint:node==&lt;yourworkernode&gt;&quot; Info Spark Master - Worker</p>
       </div>
       <div class="card-footer">
         <span class="float-left">March 5, 2019</span>
@@ -289,10 +407,14 @@ Spark Master - Worker </p>
       </div>
       <div class="card-body">
         <h5 class="card-title">Zeppelin Docker Compose Yaml</h5>
-        <p class="card-text post-summary">docker-compose.yaml
-{% highlight Kconfig %} version: &ldquo;3.0&rdquo; services: zeppelin1: image: apache/zeppelin:0.8.0 container_name: docker_zeppelin_1 ports: - &ldquo;8080:8080&rdquo; {% endhighlight %}
-spark가 로컬이 아닐 경우에는 spark-submit을 통해 사용하기 때문에 spark가 zeppelin 내부에 설치가 되어 있어야 함 up -d 이후 Docker Container안에서 Spark를 Download( wget http://apache.mirror.cdnetworks.com/spark/spark-2.3.2/spark-2.3.2-bin-hadoop2.7.tgz ) {% highlight Kconfig %} docker exec -it docker_zepplein_1 bash wget http://apache.mirror.cdnetworks.com/spark/spark-2.3.2/spark-2.3.2-bin-hadoop2.7.tgz tar -xvf spark-2.3.2-bin-hadoop2.7.tgz mv spark-2.3.2-bin-hadoop2.7 /spark {% endhighlight %}
-Interpreters에서 Create Interpreter group 을 Spark로 설정 Properties에 Spark 관련 Property를 추가  SPARK_HOME: /spark  SPARK_SUBMIT_OPTIONS: &ndash;packages datastax:spark-cassandra-connector:2.</p>
+        <p class="card-text post-summary">Docker Compose File docker-compose.yaml
+version: &quot;3.0&quot; services: zeppelin1: image: apache/zeppelin:0.8.0 container_name: docker_zeppelin_1 ports: - &quot;8080:8080&quot; Info spark가 로컬이 아닐 경우에는 spark-submit을 통해 사용하기 때문에
+spark가 zeppelin 내부에 설치가 되어 있어야 함
+up -d 이후
+Docker Container안에서 Spark를 Download( wget http://apache.mirror.cdnetworks.com/spark/spark-2.3.2/spark-2.3.2-bin-hadoop2.7.tgz )
+docker exec -it docker_zepplein_1 bash wget http://apache.mirror.cdnetworks.com/spark/spark-2.3.2/spark-2.3.2-bin-hadoop2.7.tgz tar -xvf spark-2.3.2-bin-hadoop2.7.tgz mv spark-2.3.2-bin-hadoop2.7 /spark Interpreters에서 Create
+Interpreter group 을 Spark로 설정 Properties에 Spark 관련 Property를 추가
+ SPARK_HOME: /spark SPARK_SUBMIT_OPTIONS: &ndash;packages datastax:spark-cassandra-connector:2.</p>
       </div>
       <div class="card-footer">
         <span class="float-left">March 5, 2019</span>
@@ -315,10 +437,8 @@ Interpreters에서 Create Interpreter group 을 Spark로 설정 Properties에 Sp
       </div>
       <div class="card-body">
         <h5 class="card-title">Kafka Cluster Docker Compose Yaml</h5>
-        <p class="card-text post-summary">docker-compose.yaml
-{% highlight Kconfig %} version: &lsquo;2.1&rsquo;
-services: zoo1: image: zookeeper:3.4.9 hostname: zoo1 ports: - &ldquo;2181:2181&rdquo; container_name: docker_zoo_1 environment: ZOO_MY_ID: 1 ZOO_PORT: 2181 ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 zoo2: image: zookeeper:3.4.9 hostname: zoo2 ports: - &ldquo;2182:2182&rdquo; container_name: docker_zoo_2 environment: ZOO_MY_ID: 2 ZOO_PORT: 2182 ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 zoo3: image: zookeeper:3.4.9 hostname: zoo3 ports: - &ldquo;2183:2183&rdquo; container_name: docker_zoo_3 environment: ZOO_MY_ID: 3 ZOO_PORT: 2183 ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
-kafka1: image: confluentinc/cp-kafka:5.0.0 hostname: kafka1 ports: - &ldquo;9092:9092&rdquo; container_name: docker_kafka_1 environment: KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka1:19092,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-192.</p>
+        <p class="card-text post-summary">Docker Compose File docker-compose.yaml
+version: '2.1' services: zoo1: image: zookeeper:3.4.9 hostname: zoo1 ports: - &quot;2181:2181&quot; container_name: docker_zoo_1 environment: ZOO_MY_ID: 1 ZOO_PORT: 2181 ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 zoo2: image: zookeeper:3.4.9 hostname: zoo2 ports: - &quot;2182:2182&quot; container_name: docker_zoo_2 environment: ZOO_MY_ID: 2 ZOO_PORT: 2182 ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 zoo3: image: zookeeper:3.4.9 hostname: zoo3 ports: - &quot;2183:2183&quot; container_name: docker_zoo_3 environment: ZOO_MY_ID: 3 ZOO_PORT: 2183 ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 kafka1: image: confluentinc/cp-kafka:5.0.0 hostname: kafka1 ports: - &quot;9092:9092&quot; container_name: docker_kafka_1 environment: KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka1:19092,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-192.</p>
       </div>
       <div class="card-footer">
         <span class="float-left">February 15, 2019</span>
@@ -341,8 +461,8 @@ kafka1: image: confluentinc/cp-kafka:5.0.0 hostname: kafka1 ports: - &ldquo;9092
       </div>
       <div class="card-body">
         <h5 class="card-title">Cassandra Cluster Docker Compose Yaml</h5>
-        <p class="card-text post-summary">docker-compose.yaml
-{% highlight Kconfig %} version: &lsquo;2&rsquo; services: cassandra1: image: cassandra ports: - 7000:7000 - 7001:7001 - 9160:9160 - 9042:9042 environment: CASSANDRA_BROADCAST_ADDRESS: &ldquo;10.5.0.10&rdquo; CASSANDRA_SEEDS: &ldquo;10.5.0.10&rdquo; CASSANDRA_CLUSTER_NAME: &ldquo;Test Cluster&rdquo; CASSANDRA_DC: &ldquo;DC1&rdquo; CASSANDRA_RACK: &ldquo;RAC1&rdquo; CASSANDRA_ENDPOINT_SNITCH: &ldquo;GossipingPropertyFileSnitch&rdquo; CASSANDRA_START_RPC: &ldquo;true&rdquo; hostname: cassandra1 container_name: docker_cassandra_1 logging: driver: json-file options: max-size: 50m networks: cassnw: ipv4_address: 10.5.0.10 cassandra2: image: cassandra environment: CASSANDRA_BROADCAST_ADDRESS: &ldquo;10.5.0.10&rdquo; CASSANDRA_SEEDS: &ldquo;10.5.0.10&rdquo; CASSANDRA_CLUSTER_NAME: &ldquo;Test Cluster&rdquo; CASSANDRA_DC: &ldquo;DC1&rdquo; CASSANDRA_RACK: &ldquo;RAC1&rdquo; CASSANDRA_ENDPOINT_SNITCH: &ldquo;GossipingPropertyFileSnitch&rdquo; CASSANDRA_START_RPC: &ldquo;true&rdquo; hostname: cassandra2 container_name: docker_cassandra_2 logging: driver: json-file options: max-size: 50m networks: cassnw: ipv4_address: 10.</p>
+        <p class="card-text post-summary">Docker Compose File docker-compose.yaml
+version: '2' services: cassandra1: image: cassandra ports: - 7000:7000 - 7001:7001 - 9160:9160 - 9042:9042 environment: CASSANDRA_BROADCAST_ADDRESS: &quot;10.5.0.10&quot; CASSANDRA_SEEDS: &quot;10.5.0.10&quot; CASSANDRA_CLUSTER_NAME: &quot;Test Cluster&quot; CASSANDRA_DC: &quot;DC1&quot; CASSANDRA_RACK: &quot;RAC1&quot; CASSANDRA_ENDPOINT_SNITCH: &quot;GossipingPropertyFileSnitch&quot; CASSANDRA_START_RPC: &quot;true&quot; hostname: cassandra1 container_name: docker_cassandra_1 logging: driver: json-file options: max-size: 50m networks: cassnw: ipv4_address: 10.5.0.10 cassandra2: image: cassandra environment: CASSANDRA_BROADCAST_ADDRESS: &quot;10.5.0.10&quot; CASSANDRA_SEEDS: &quot;10.5.0.10&quot; CASSANDRA_CLUSTER_NAME: &quot;Test Cluster&quot; CASSANDRA_DC: &quot;DC1&quot; CASSANDRA_RACK: &quot;RAC1&quot; CASSANDRA_ENDPOINT_SNITCH: &quot;GossipingPropertyFileSnitch&quot; CASSANDRA_START_RPC: &quot;true&quot; hostname: cassandra2 container_name: docker_cassandra_2 logging: driver: json-file options: max-size: 50m networks: cassnw: ipv4_address: 10.</p>
       </div>
       <div class="card-footer">
         <span class="float-left">January 21, 2019</span>

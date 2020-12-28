@@ -13,14 +13,7 @@
       <pubDate>Wed, 16 Dec 2020 19:32:00 +0900</pubDate>
       
       <guid>https://mason-ko.github.io/posts/tech/2020/2020-12-16-custom-mashaler-grpc-gateway/</guid>
-      <description>{% highlight Kconfig %} type myMarshaler struct { JSONPb *runtime.JSONPb }
-func NewMyMarshaler() runtime.ServeMuxOption { m := myMarshaler{ JSONPb: &amp;amp;runtime.JSONPb{OrigName: true, EmitDefaults: true}, }
-return runtime.WithMarshalerOption(runtime.MIMEWildcard, m) }
-{% endhighlight %}
-{% highlight Kconfig %}
-func (m customMarshaler) Marshal(v interface{}) ([]byte, error) { return m.JSONPb.Marshal(v) }
-func (m myMarshaler) Unmarshal(data []byte, v interface{}) error { return m.JSONPb.Unmarshal(data, v) }
-func (m myMarshaler) NewDecoder(r io.Reader) runtime.Decoder { return m.JSONPb.NewDecoder(r) }</description>
+      <description>Custom Mashlaer 생성 type myMarshaler struct { JSONPb *runtime.JSONPb } func NewMyMarshaler() runtime.ServeMuxOption { m := myMarshaler{ JSONPb: &amp;amp;runtime.JSONPb{OrigName: true, EmitDefaults: true}, } return runtime.WithMarshalerOption(runtime.MIMEWildcard, m) }  JSONPb interface 구현 func (m customMarshaler) Marshal(v interface{}) ([]byte, error) { return m.JSONPb.Marshal(v) } func (m myMarshaler) Unmarshal(data []byte, v interface{}) error { return m.JSONPb.Unmarshal(data, v) } func (m myMarshaler) NewDecoder(r io.Reader) runtime.Decoder { return m.JSONPb.NewDecoder(r) } func (m myMarshaler) NewEncoder(w io.Writer) runtime.</description>
     </item>
     
   </channel>
