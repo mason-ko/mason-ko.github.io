@@ -11,54 +11,36 @@ section:
 # Your experiences
 experiences:
 - company:
-    name: Example Co.
-    url: "https://www.example.com"
-    location: Dhaka Branch
-    # company overview
-    overview: Example Co. is a widely recognized company for cloud-native development. It builds tools for Kubernetes.
+    name: 엔쓰리엔
+    url: "http://n3n.co.kr/"
+    overview: 빅데이터의 수집 및 데이터 시각화
   positions:
-  - designation: Senior Software Engineer
-    start: Nov 2019
-    # don't provide end date if you are currently working there. It will be replaced by "Present"
-    # end: Dec 2020
-    # give some points about what was your responsibilities at the company.
+  - designation: DataEngine (Backend) Engineer
+    start: 2014 11
+    end: 2019 06
     responsibilities:
-    - Design and develop XYZ tool for ABC task
-    - Design, develop and manage disaster recovery tool [Xtool](https://www.example.com) that backup Kubernetes volumes, databases, and cluster's resource definition.
-    - Lead backend team.
-
-  - designation: Junior Software Engineer
-    start: Nov 2017
-    end: Oct 2019
-    responsibilities:
-    - Implement and test xyz feature for abc tool.
-    - Support client for abc tool.
-    - Learn k,d,w technology for xyz.
+    - Data Flatform 분산 처리 아키텍쳐 개발
+    - Node-red 연동하여 Data Hierarchy 구조 설계 및 개발
+    - Server backend API 개발
 
 - company:
-    name: PreExample Co.
-    url: "https://www.preexample.com"
-    location: Nowhere
-    overview: PreExample Co. is a gateway company to enter into Example co. So, nothing special here.
+    name: 유비베이스
+    overview: 메신저 및 확장 프로그램 개발
   positions:
-  - designation: Software Engineer
-    start: March 2016
-    end: May 2017
+  - designation: C# WPF Engineer
+    start: 2013 04
+    end: 2014 08
     responsibilities:
-    - Write lots of example codes.
-    - Read lots of examples.
-    - See lots of example videos.
+    - MS Lync 메신저 확장 프로그램 개발.
+    - 은행권 및 각종 사이트 메신저 WPF 프로그램 개발.
 
 - company:
-    name: Intern Counting Company (ICC).
-    url: "https://www.intern.com"
-    location: Intern Land
-    overview: Intern counting Company (ICC) is responsible for counting worldwide intern Engineers.
+    name: 아람솔루션
+    url: "http://www.uaram.co.kr/"
+    overview: 무선통신과 스마트폰을 접목한 IT융합 제품을 개발
   positions:
-  - designation: Intern
-    start: Jun 2015
-    end: Jan 2016
+  - designation: Firmware Engineer
+    start: 2011 12
+    end: 2012 08
     responsibilities:
-    - Count lost of interns.
-    - Count more interns.
-    - Count me as an intern.
+    - 임베디드 시스템 펌웨어 개발.
