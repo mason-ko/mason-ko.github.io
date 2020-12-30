@@ -2,17 +2,18 @@
 layout: post
 title:  "Kafka Cluster Docker Compose Yaml"
 date:   2019-02-15 13:42:46 +0900
-categories: tech docker
-permalink: /tech/docker/:title
+menu:
+  sidebar:
+    name: Kafka Cluster Docker Compose Yaml
+    parent: 2019
+    weight: 10
 ---
 
-<h2>
-Docker Compose File
-</h2>
+## Docker Compose File
 
 docker-compose.yaml
 
-{% highlight Kconfig %}
+```
 version: '2.1'
 
 services:
@@ -98,13 +99,11 @@ services:
       - ./zk-single-kafka-multiple/kafka3/data:/var/lib/kafka/data
     depends_on:
       - zoo3
-{% endhighlight %}
+```
 
-<h2>
-Info
-</h2>
+## Info
 
-Kafka Broker 당 zookeeper 1개씩 페어 <br/>
-각 Kafka는 zookeeper를 바라보고 <br/>
+Kafka Broker 당 zookeeper 1개씩 페어  
+각 Kafka는 zookeeper를 바라보고  
 zookeeper 끼리 ZOO_SERVERS 값으로 Cluster 공유
 

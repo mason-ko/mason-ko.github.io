@@ -2,13 +2,14 @@
 layout: post
 title:  "Docker Debug With Rider"
 date:   2019-05-17 11:03:00 +0900
-categories: tech docker
-permalink: /tech/docker/:title
+menu:
+  sidebar:
+    name: Docker Debug With Rider
+    parent: 2019
+    weight: 10
 ---
 
-<h2>
-1. Rider에서 Docker 사용
-</h2>
+## 1. Rider에서 Docker 사용
 
 <h4>
 Docker On Windows 사용할때 Check
@@ -21,7 +22,7 @@ Docker On Windows 사용할때 Check
 Create Dockerfile (ConsoleApp1.project)
 </h4>
 
-{% highlight Kconfig %}
+```
 FROM microsoft/dotnet:2.1-aspnetcore-runtime as base
 
 FROM microsoft/dotnet:2.1-sdk as build
@@ -44,15 +45,13 @@ WORKDIR /app
 COPY --from=publish /app .
 
 ENTRYPOINT ["dotnet", "ConsoleApp1.dll"]
-{% endhighlight %}
+```
 
-추가 설정<br/>
+추가 설정  
 ![My helpful screenshot]({{ "/assets/20190517/capture3.png" | absolute_url }})
 ![My helpful screenshot]({{ "/assets/20190517/capture4.png" | absolute_url }})
 
-<h2>
-2. Mono Debugging
-</h2>
+## 2. Mono Debugging
 
 ![My helpful screenshot]({{ "/assets/20190517/capture5.png" | absolute_url }})
 
@@ -62,12 +61,10 @@ ENTRYPOINT ["dotnet", "ConsoleApp1.dll"]
 
 ![My helpful screenshot]({{ "/assets/20190517/capture6.png" | absolute_url }})
 
-<h3>
-참조 Mono Debugging 문서
-</h3>
+#### 참조 Mono Debugging 문서
 
-[Creating and Editing Run/Debug Configurations] <br/>
-[Remote Debugging with Mono]<br/>
+[Creating and Editing Run/Debug Configurations]  
+[Remote Debugging with Mono]  
 
 [Creating and Editing Run/Debug Configurations]: https://www.jetbrains.com/help/rider/Creating_and_Editing_Run_Debug_Configurations.html
 [Remote Debugging with Mono]: https://www.jetbrains.com/help/rider/Remote_Debugging_with_Mono.html#debugging-options

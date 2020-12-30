@@ -2,17 +2,18 @@
 layout: post
 title:  "Redis Cluster"
 date:   2019-03-20 10:00:00 +0900
-categories: tech docker
-permalink: /tech/docker/:title
+menu:
+  sidebar:
+    name: Redis Cluster
+    parent: 2019
+    weight: 10
 ---
 
-<h2>
-Docker Compose File
-</h2>
+## Docker Compose File
 
 docker-compose.yaml
 
-{% highlight Kconfig %}
+```
 version: "3.1"
 services:
   redis-master-1:
@@ -83,25 +84,23 @@ networks:
     ipam:
       config:
         - subnet: 10.0.0.0/16
-{% endhighlight %}
+```
 
-<h2>
-Info
-</h2>
+## Info
 
-3개 이상의 마스터를 구성 <br/>
-한쪽 클러스의 영역 ( 마스터, 슬레이브 ) 전부 죽었을 시 Cluster Down으로 <br/>
-동작되지 않음  CLUSTERDOWN The cluster is down <br/>
-그 후 슬레이브만 부활했을 때에 자동적으로 Master가 되지 않고 계속 Master를 찾음 ( 결국 전부 다 죽었을 때는 Master가 살아 난 이후 정상 동작임 ) <br/>
-Master 가 있을 시 Master로만 사용되며 Master가 죽었을 시 Slave가 마스터가 되어 동작함 ( Active - stand by ) <br/>
+3개 이상의 마스터를 구성  
+한쪽 클러스의 영역 ( 마스터, 슬레이브 ) 전부 죽었을 시 Cluster Down으로  
+동작되지 않음  CLUSTERDOWN The cluster is down  
+그 후 슬레이브만 부활했을 때에 자동적으로 Master가 되지 않고 계속 Master를 찾음 ( 결국 전부 다 죽었을 때는 Master가 살아 난 이후 정상 동작임 )  
+Master 가 있을 시 Master로만 사용되며 Master가 죽었을 시 Slave가 마스터가 되어 동작함 ( Active - stand by )  
 
-------------------------------------------------------------------------------------<br/>
+------------------------------------------------------------------------------------  
 
-Redis Cluster를 사용시 Cluster에 대한 Index 정보 ( Hashslot ) 값이 추가로 저장되어야 하기 때문에<br/>
-사용하는 Data (memory)가 증가하고 리다이렉션이 필요하기 때문에 <br/>
+Redis Cluster를 사용시 Cluster에 대한 Index 정보 ( Hashslot ) 값이 추가로 저장되어야 하기 때문에  
+사용하는 Data (memory)가 증가하고 리다이렉션이 필요하기 때문에  
 샤딩이 필요없는 소규모에는 Sentinel 사용이 좋을듯
 
-<h3>참고</h3>
-[Redis Cluster Tutorial] <br/>
+#### 참고
+[Redis Cluster Tutorial]  
 
 [Redis Cluster Tutorial]: https://redis.io/topics/cluster-tutorial

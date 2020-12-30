@@ -84,10 +84,24 @@
   
   
   
+    
+    
+  
   
     
     <li>
-      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/">Tech</a>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/">Tech</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2018/">2018</a>
       
       <ul class="">
         
@@ -97,7 +111,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">2018</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">Ambrai 설치</a></li>
   
 
   
@@ -106,7 +120,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2019/">2019</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-replication-on-docker/">Redis Replication Docker로 설치</a></li>
   
 
   
@@ -115,7 +129,131 @@
   
   
     
-    <li><a class="" href="/posts/tech/2020/">2020</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-sentinel-on-docker/">Redis Sentinel Docker로 설치</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/2019/">2019</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-01-21-cassandra-cluster/">Cassandra Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-cassandra-commit-log-error/">Cassandra Commit log 충돌로 인한 Restart 불가 현상</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-05-17-docker-debug-with-rider/">Docker Debug With Rider</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-02-15-kafka-cluster/">Kafka Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-20-redis-cluster/">Redis Cluster</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-redis-warning/">Redis Warning 해결</a></li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li><a class="active" href="/posts/tech/2019/2019-03-05-spark-cluster/">Spark Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-zeppelin/">Zeppelin Docker Compose Yaml</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2020/">2020</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2020/2020-12-16-custom-mashaler-grpc-gateway/">gRPC Gateway 를 사용하여 gin 에 띄웠을때 Marshaler 커스텀</a></li>
+  
+
+
+      </ul>
+    </li>
   
 
 
@@ -154,43 +292,41 @@
         </div>
 
         <div class="post-content" id="post-content">
-          <!-- raw HTML omitted -->
+          <h2 id="docker-compose-file">Docker Compose File</h2>
 <p>docker-compose.yaml</p>
-<p>{% highlight Kconfig %}
-version: &ldquo;3.0&rdquo;
+<pre><code>version: &quot;3.0&quot;
 services:
-spark-master:
-image: bde2020/spark-master:2.3.2-hadoop2.7
-container_name: spark-master
-ports:
-- &ldquo;8083:8083&rdquo;
-- &ldquo;7077:7077&rdquo;
-environment:
-- INIT_DAEMON_STEP=setup_spark
-- &ldquo;constraint:node==<!-- raw HTML omitted -->&rdquo;
-spark-worker-1:
-image: bde2020/spark-worker:2.3.2-hadoop2.7
-container_name: spark-worker-1
-depends_on:
-- spark-master
-ports:
-- &ldquo;8081:8081&rdquo;
-environment:
-- &ldquo;SPARK_MASTER=spark://spark-master:7077&rdquo;
-- &ldquo;constraint:node==<!-- raw HTML omitted -->&rdquo;
-spark-worker-2:
-image: bde2020/spark-worker:2.3.2-hadoop2.7
-container_name: spark-worker-2
-depends_on:
-- spark-master
-ports:
-- &ldquo;8082:8082&rdquo;
-environment:
-- &ldquo;SPARK_MASTER=spark://spark-master:7077&rdquo;
-- &ldquo;constraint:node==<!-- raw HTML omitted -->&rdquo;
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>Spark Master - Worker <!-- raw HTML omitted --></p>
+  spark-master:
+    image: bde2020/spark-master:2.3.2-hadoop2.7
+    container_name: spark-master
+    ports:
+      - &quot;8083:8083&quot;
+      - &quot;7077:7077&quot;
+    environment:
+      - INIT_DAEMON_STEP=setup_spark
+      - &quot;constraint:node==&lt;yourmasternode&gt;&quot;
+  spark-worker-1:
+    image: bde2020/spark-worker:2.3.2-hadoop2.7
+    container_name: spark-worker-1
+    depends_on:
+      - spark-master
+    ports:
+      - &quot;8081:8081&quot;
+    environment:
+      - &quot;SPARK_MASTER=spark://spark-master:7077&quot;
+      - &quot;constraint:node==&lt;yourmasternode&gt;&quot;
+  spark-worker-2:
+    image: bde2020/spark-worker:2.3.2-hadoop2.7
+    container_name: spark-worker-2
+    depends_on:
+      - spark-master
+    ports:
+      - &quot;8082:8082&quot;
+    environment:
+      - &quot;SPARK_MASTER=spark://spark-master:7077&quot;
+      - &quot;constraint:node==&lt;yourworkernode&gt;&quot;
+</code></pre><h2 id="info">Info</h2>
+<p>Spark Master - Worker</p>
 
         </div>
 

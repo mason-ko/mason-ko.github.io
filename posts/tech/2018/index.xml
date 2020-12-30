@@ -13,9 +13,7 @@
       <pubDate>Fri, 28 Dec 2018 16:42:46 +0900</pubDate>
       
       <guid>https://mason-ko.github.io/posts/tech/2018/2018-12-28-redis-replication-on-docker/</guid>
-      <description>{% highlight Kconfig %} sudo systemctl stop firewalld sudo systemctl disable firewalld sudo setenforce 0 {% endhighlight %}
-{% highlight Kconfig %} yum install -y docker sudo curl -L &amp;ldquo;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&amp;rdquo; -o /usr/local/bin/docker-compose sudo chmod +x /usr/local/bin/docker-compose {% endhighlight %}
- redis.conf 만듬 Redis Stable Config 복사 protected-mode 사용중일 때 비밀번호 필요하며 Docker 외부에서 사용가능하도록 bind 주석 처리 각 slave config에 master 정보 추가  {% highlight Kconfig %} mkdir .</description>
+      <description>Install Environment CentOs 7 방화벽 해제 sudo systemctl stop firewalld sudo systemctl disable firewalld sudo setenforce 0 Install Docker &amp;amp; Docker Compose yum install -y docker sudo curl -L &amp;quot;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&amp;quot; -o /usr/local/bin/docker-compose sudo chmod +x /usr/local/bin/docker-compose Redis Replication Config File 준비  redis.conf 만듬 Redis Stable Config 복사 protected-mode 사용중일 때 비밀번호 필요하며 Docker 외부에서 사용가능하도록 bind 주석 처리 각 slave config에 master 정보 추가  mkdir ./s1 .</description>
     </item>
     
     <item>
@@ -24,11 +22,8 @@
       <pubDate>Fri, 28 Dec 2018 16:42:46 +0900</pubDate>
       
       <guid>https://mason-ko.github.io/posts/tech/2018/2018-12-28-redis-sentinel-on-docker/</guid>
-      <description>{% highlight Kconfig %} sudo systemctl stop firewalld sudo systemctl disable firewalld sudo setenforce 0 {% endhighlight %}
-{% highlight Kconfig %} yum install -y docker sudo curl -L &amp;ldquo;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&amp;rdquo; -o /usr/local/bin/docker-compose sudo chmod +x /usr/local/bin/docker-compose {% endhighlight %}
-sentinel.conf 만듬
-{% highlight Kconfig %} mkdir ./sentinel1 ./sentinel2 ./sentinel3
-echo &amp;lsquo;sentinel monitor mymaster 10.0.0.1 7000 2&amp;rsquo; &amp;raquo; sentinel.conf echo &amp;lsquo;sentinel down-after-milliseconds mymaster 5000&amp;rsquo; &amp;raquo; sentinel.conf echo &amp;lsquo;sentinel failover-timeout mymaster 7000&amp;rsquo; &amp;raquo; sentinel.</description>
+      <description>Install Environment CentOs 7 방화벽 해제 sudo systemctl stop firewalld sudo systemctl disable firewalld sudo setenforce 0 Install Docker &amp;amp; Docker Compose yum install -y docker sudo curl -L &amp;quot;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&amp;quot; -o /usr/local/bin/docker-compose sudo chmod +x /usr/local/bin/docker-compose Redis Sentinel Config File 준비 sentinel.conf 만듬
+mkdir ./sentinel1 ./sentinel2 ./sentinel3 echo &#39;sentinel monitor mymaster 10.0.0.1 7000 2&#39; &amp;gt;&amp;gt; sentinel.conf echo &#39;sentinel down-after-milliseconds mymaster 5000&#39; &amp;gt;&amp;gt; sentinel.conf echo &#39;sentinel failover-timeout mymaster 7000&#39; &amp;gt;&amp;gt; sentinel.</description>
     </item>
     
     <item>
@@ -37,10 +32,9 @@ echo &amp;lsquo;sentinel monitor mymaster 10.0.0.1 7000 2&amp;rsquo; &amp;raquo;
       <pubDate>Fri, 07 Dec 2018 11:08:46 +0900</pubDate>
       
       <guid>https://mason-ko.github.io/posts/tech/2018/2018-12-07-abmari-install/</guid>
-      <description>Install Environment Windows 10 VM 환경 {% highlight Kconfig %} sudo systemctl stop firewalld sudo systemctl disable firewalld sudo setenforce 0 {% endhighlight %}
-Server {% highlight Kconfig %} sudo hostnamectl set-hostname server1.kr {% endhighlight %} Agent {% highlight Kconfig %} sudo hostnamectl set-hostname agent1.kr {% endhighlight %}
-{% highlight Kconfig %} sudo yum install -y java-1.8.0-openjdk wget {% endhighlight %}
-{% highlight Kconfig %} sudo wget -nv http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.2/ambari.repo -O /etc/yum.</description>
+      <description>Install Environment Windows 10 VM 환경 공통  os : centos 7.5.1804  IP  server : 192.168.56.103 agent : 192.168.56.104  방화벽 해제 sudo systemctl stop firewalld sudo systemctl disable firewalld sudo setenforce 0 Host Name 등록 Server
+sudo hostnamectl set-hostname server1.kr Agent
+sudo hostnamectl set-hostname agent1.kr Install Java sudo yum install -y java-1.8.0-openjdk wget Install Ambrai Server sudo wget -nv http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.2/ambari.repo -O /etc/yum.repos.d/ambari.repo sudo yum install -y ambari-server Set FQDN Server와 Agent의 Host 설정</description>
     </item>
     
   </channel>

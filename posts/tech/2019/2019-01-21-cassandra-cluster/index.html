@@ -84,10 +84,24 @@
   
   
   
+    
+    
+  
   
     
     <li>
-      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/">Tech</a>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/">Tech</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2018/">2018</a>
       
       <ul class="">
         
@@ -97,7 +111,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">2018</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">Ambrai 설치</a></li>
   
 
   
@@ -106,7 +120,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2019/">2019</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-replication-on-docker/">Redis Replication Docker로 설치</a></li>
   
 
   
@@ -115,7 +129,131 @@
   
   
     
-    <li><a class="" href="/posts/tech/2020/">2020</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-sentinel-on-docker/">Redis Sentinel Docker로 설치</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/2019/">2019</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li><a class="active" href="/posts/tech/2019/2019-01-21-cassandra-cluster/">Cassandra Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-cassandra-commit-log-error/">Cassandra Commit log 충돌로 인한 Restart 불가 현상</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-05-17-docker-debug-with-rider/">Docker Debug With Rider</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-02-15-kafka-cluster/">Kafka Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-20-redis-cluster/">Redis Cluster</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-redis-warning/">Redis Warning 해결</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-spark-cluster/">Spark Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-zeppelin/">Zeppelin Docker Compose Yaml</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2020/">2020</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2020/2020-12-16-custom-mashaler-grpc-gateway/">gRPC Gateway 를 사용하여 gin 에 띄웠을때 Marshaler 커스텀</a></li>
+  
+
+
+      </ul>
+    </li>
   
 
 
@@ -154,93 +292,90 @@
         </div>
 
         <div class="post-content" id="post-content">
-          <!-- raw HTML omitted -->
+          <h2 id="docker-compose-file">Docker Compose File</h2>
 <p>docker-compose.yaml</p>
-<p>{% highlight Kconfig %}
-version: &lsquo;2&rsquo;
+<pre><code>version: '2'
 services:
-cassandra1:
-image: cassandra
-ports:
-- 7000:7000
-- 7001:7001
-- 9160:9160
-- 9042:9042
-environment:
-CASSANDRA_BROADCAST_ADDRESS: &ldquo;10.5.0.10&rdquo;
-CASSANDRA_SEEDS: &ldquo;10.5.0.10&rdquo;
-CASSANDRA_CLUSTER_NAME: &ldquo;Test Cluster&rdquo;
-CASSANDRA_DC: &ldquo;DC1&rdquo;
-CASSANDRA_RACK: &ldquo;RAC1&rdquo;
-CASSANDRA_ENDPOINT_SNITCH: &ldquo;GossipingPropertyFileSnitch&rdquo;
-CASSANDRA_START_RPC: &ldquo;true&rdquo;
-hostname: cassandra1
-container_name: docker_cassandra_1
-logging:
-driver: json-file
-options:
-max-size: 50m
+  cassandra1:
+    image: cassandra
+    ports:
+      - 7000:7000
+      - 7001:7001
+      - 9160:9160
+      - 9042:9042
+    environment:
+      CASSANDRA_BROADCAST_ADDRESS: &quot;10.5.0.10&quot;
+      CASSANDRA_SEEDS: &quot;10.5.0.10&quot;
+      CASSANDRA_CLUSTER_NAME: &quot;Test Cluster&quot;
+      CASSANDRA_DC: &quot;DC1&quot;
+      CASSANDRA_RACK: &quot;RAC1&quot;
+      CASSANDRA_ENDPOINT_SNITCH: &quot;GossipingPropertyFileSnitch&quot;
+      CASSANDRA_START_RPC: &quot;true&quot;
+    hostname: cassandra1
+    container_name: docker_cassandra_1
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    networks:
+      cassnw:
+        ipv4_address: 10.5.0.10
+  cassandra2:
+    image: cassandra
+    environment:
+      CASSANDRA_BROADCAST_ADDRESS: &quot;10.5.0.10&quot;
+      CASSANDRA_SEEDS: &quot;10.5.0.10&quot;
+      CASSANDRA_CLUSTER_NAME: &quot;Test Cluster&quot;
+      CASSANDRA_DC: &quot;DC1&quot;
+      CASSANDRA_RACK: &quot;RAC1&quot;
+      CASSANDRA_ENDPOINT_SNITCH: &quot;GossipingPropertyFileSnitch&quot;
+      CASSANDRA_START_RPC: &quot;true&quot;
+    hostname: cassandra2
+    container_name: docker_cassandra_2
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    networks:
+      cassnw:
+        ipv4_address: 10.5.0.11
+  cassandra3:
+    image: cassandra
+    environment:
+      CASSANDRA_BROADCAST_ADDRESS: &quot;10.5.0.10&quot;
+      CASSANDRA_SEEDS: &quot;10.5.0.10&quot;
+      CASSANDRA_CLUSTER_NAME: &quot;Test Cluster&quot;
+      CASSANDRA_DC: &quot;DC1&quot;
+      CASSANDRA_RACK: &quot;RAC1&quot;
+      CASSANDRA_ENDPOINT_SNITCH: &quot;GossipingPropertyFileSnitch&quot;
+      CASSANDRA_START_RPC: &quot;true&quot;
+    hostname: cassandra3
+    container_name: docker_cassandra_3
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    networks:
+      cassnw:
+        ipv4_address: 10.5.0.12
+    
 networks:
-cassnw:
-ipv4_address: 10.5.0.10
-cassandra2:
-image: cassandra
-environment:
-CASSANDRA_BROADCAST_ADDRESS: &ldquo;10.5.0.10&rdquo;
-CASSANDRA_SEEDS: &ldquo;10.5.0.10&rdquo;
-CASSANDRA_CLUSTER_NAME: &ldquo;Test Cluster&rdquo;
-CASSANDRA_DC: &ldquo;DC1&rdquo;
-CASSANDRA_RACK: &ldquo;RAC1&rdquo;
-CASSANDRA_ENDPOINT_SNITCH: &ldquo;GossipingPropertyFileSnitch&rdquo;
-CASSANDRA_START_RPC: &ldquo;true&rdquo;
-hostname: cassandra2
-container_name: docker_cassandra_2
-logging:
-driver: json-file
-options:
-max-size: 50m
-networks:
-cassnw:
-ipv4_address: 10.5.0.11
-cassandra3:
-image: cassandra
-environment:
-CASSANDRA_BROADCAST_ADDRESS: &ldquo;10.5.0.10&rdquo;
-CASSANDRA_SEEDS: &ldquo;10.5.0.10&rdquo;
-CASSANDRA_CLUSTER_NAME: &ldquo;Test Cluster&rdquo;
-CASSANDRA_DC: &ldquo;DC1&rdquo;
-CASSANDRA_RACK: &ldquo;RAC1&rdquo;
-CASSANDRA_ENDPOINT_SNITCH: &ldquo;GossipingPropertyFileSnitch&rdquo;
-CASSANDRA_START_RPC: &ldquo;true&rdquo;
-hostname: cassandra3
-container_name: docker_cassandra_3
-logging:
-driver: json-file
-options:
-max-size: 50m
-networks:
-cassnw:
-ipv4_address: 10.5.0.12</p>
-<p>networks:
-cassnw:
-driver: bridge
-ipam:
-config:
-- subnet: 10.5.0.0/16
-gateway: 10.5.0.1
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>Cluster 사용시 아래 환경변수로 사용시 <!-- raw HTML omitted --> 
-docker-compose up -d 이후 <!-- raw HTML omitted -->
-cassandra.yaml 파일의 broadcast_address 부분을 주석처리해야함 <!-- raw HTML omitted --></p>
+  cassnw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
+</code></pre><h2 id="info">Info</h2>
+<p>Cluster 사용시 아래 환경변수로 사용시<br>
+docker-compose up -d 이후<br>
+cassandra.yaml 파일의 broadcast_address 부분을 주석처리해야함</p>
 <p>실행 후</p>
-<p>{% highlight Kconfig %}
-docker exec -it docker_cassandra_1 sed -i &rsquo;s/broadcast_address:/#broadcast_address:/' /etc/cassandra/cassandra.yaml
-docker exec -it docker_cassandra_2 sed -i &rsquo;s/broadcast_address:/#broadcast_address:/' /etc/cassandra/cassandra.yaml
-docker exec -it docker_cassandra_3 sed -i &rsquo;s/broadcast_address:/#broadcast_address:/' /etc/cassandra/cassandra.yaml
+<pre><code>docker exec -it docker_cassandra_1 sed -i 's/broadcast_address:/#broadcast_address:/' /etc/cassandra/cassandra.yaml
+docker exec -it docker_cassandra_2 sed -i 's/broadcast_address:/#broadcast_address:/' /etc/cassandra/cassandra.yaml
+docker exec -it docker_cassandra_3 sed -i 's/broadcast_address:/#broadcast_address:/' /etc/cassandra/cassandra.yaml
 docker-compose -f docker.yaml restart
-{% endhighlight %}</p>
-<p>필요</p>
+</code></pre><p>필요</p>
 
         </div>
 

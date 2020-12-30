@@ -84,10 +84,24 @@
   
   
   
+    
+    
+  
   
     
     <li>
-      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/">Tech</a>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/">Tech</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2018/">2018</a>
       
       <ul class="">
         
@@ -97,7 +111,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">2018</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-07-abmari-install/">Ambrai 설치</a></li>
   
 
   
@@ -106,7 +120,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2019/">2019</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-replication-on-docker/">Redis Replication Docker로 설치</a></li>
   
 
   
@@ -115,7 +129,131 @@
   
   
     
-    <li><a class="" href="/posts/tech/2020/">2020</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-sentinel-on-docker/">Redis Sentinel Docker로 설치</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/2019/">2019</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-01-21-cassandra-cluster/">Cassandra Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-cassandra-commit-log-error/">Cassandra Commit log 충돌로 인한 Restart 불가 현상</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-05-17-docker-debug-with-rider/">Docker Debug With Rider</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-02-15-kafka-cluster/">Kafka Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-20-redis-cluster/">Redis Cluster</a></li>
+  
+
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li><a class="active" href="/posts/tech/2019/2019-04-08-redis-warning/">Redis Warning 해결</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-spark-cluster/">Spark Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-zeppelin/">Zeppelin Docker Compose Yaml</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2020/">2020</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2020/2020-12-16-custom-mashaler-grpc-gateway/">gRPC Gateway 를 사용하여 gin 에 띄웠을때 Marshaler 커스텀</a></li>
+  
+
+
+      </ul>
+    </li>
   
 
 
@@ -154,35 +292,31 @@
         </div>
 
         <div class="post-content" id="post-content">
-          <!-- raw HTML omitted -->
+          <h2 id="1-overcommit_memory">1. overcommit_memory</h2>
 <p>Host PC에서 실행</p>
-<p>{% highlight Kconfig %}
-sudo sysctl vm.overcommit_memory=1</p>
-<p>#재부팅시 적용되려면
-vi /etc/sysctl.conf</p>
-<h1 id="추가">추가</h1>
-<p>net.core.somaxconn=1024
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
+<pre><code>sudo sysctl vm.overcommit_memory=1
+
+#재부팅시 적용되려면
+vi /etc/sysctl.conf
+# 추가
+net.core.somaxconn=1024
+</code></pre><h2 id="2-thp-disable">2. THP Disable</h2>
 <p>Host PC에서 실행</p>
-<p>{% highlight Kconfig %}
-echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled</p>
-<p>#재부팅시 적용되려면
-vi /etc/rc.local</p>
-<h1 id="추가-1">추가</h1>
-<p>echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled
+<pre><code>echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled
+
+#재부팅시 적용되려면
+vi /etc/rc.local
+# 추가
+echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled
 exit 0
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>Docker Compose yaml에 내용 추가 ( 65535 까지 가능 ) <!-- raw HTML omitted -->
+</code></pre><h2 id="3-tcp-backlog">3. TCP Backlog</h2>
+<p>Docker Compose yaml에 내용 추가 ( 65535 까지 가능 )<br>
 sysctls 은 docker compose version 2.1 이상부터 가능함을 확인</p>
-<p>{% highlight Kconfig %}
-sysctls:</p>
-<ul>
-<li>net.core.somaxconn=1024
-{% endhighlight %}</li>
-</ul>
-<!-- raw HTML omitted -->
+<pre><code>sysctls:
+  - net.core.somaxconn=1024
+</code></pre><h4 id="참고">참고</h4>
+<p><a href="https://www.tutorialbook.co.kr/entry/Redis-%EC%84%A4%EC%B9%98-%ED%9B%84-Warning-%EC%A0%9C%EA%B1%B0%ED%95%98%EA%B8%B0">Redis 설치 후 Warning 제거하기</a><br>
+<a href="https://docs.docker.com/compose/compose-file/#sysctls">Docker Docs</a></p>
 
         </div>
 

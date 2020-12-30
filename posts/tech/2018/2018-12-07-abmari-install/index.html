@@ -103,7 +103,21 @@
   
   
     
-    <li><a class="active" href="/posts/tech/2018/2018-12-07-abmari-install/">2018</a></li>
+    <li>
+      <i class="fas fa-minus-circle"></i><a class="active" href="/posts/tech/2018/">2018</a>
+      
+      <ul class="active">
+        
+  
+  
+  
+  
+    
+    
+  
+  
+    
+    <li><a class="active" href="/posts/tech/2018/2018-12-07-abmari-install/">Ambrai 설치</a></li>
   
 
   
@@ -112,7 +126,7 @@
   
   
     
-    <li><a class="" href="/posts/tech/2019/">2019</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-replication-on-docker/">Redis Replication Docker로 설치</a></li>
   
 
   
@@ -121,7 +135,125 @@
   
   
     
-    <li><a class="" href="/posts/tech/2020/">2020</a></li>
+    <li><a class="" href="/posts/tech/2018/2018-12-28-redis-sentinel-on-docker/">Redis Sentinel Docker로 설치</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2019/">2019</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-01-21-cassandra-cluster/">Cassandra Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-cassandra-commit-log-error/">Cassandra Commit log 충돌로 인한 Restart 불가 현상</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-05-17-docker-debug-with-rider/">Docker Debug With Rider</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-02-15-kafka-cluster/">Kafka Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-20-redis-cluster/">Redis Cluster</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-04-08-redis-warning/">Redis Warning 해결</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-spark-cluster/">Spark Cluster Docker Compose Yaml</a></li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2019/2019-03-05-zeppelin/">Zeppelin Docker Compose Yaml</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+  
+  
+  
+  
+    
+    <li>
+      <i class="fas fa-plus-circle"></i><a class="" href="/posts/tech/2020/">2020</a>
+      
+      <ul class="">
+        
+  
+  
+  
+  
+  
+    
+    <li><a class="" href="/posts/tech/2020/2020-12-16-custom-mashaler-grpc-gateway/">gRPC Gateway 를 사용하여 gin 에 띄웠을때 Marshaler 커스텀</a></li>
+  
+
+
+      </ul>
+    </li>
   
 
 
@@ -162,87 +294,74 @@
         <div class="post-content" id="post-content">
           <h2 id="install-environment">Install Environment</h2>
 <h5 id="windows-10-vm-환경">Windows 10 VM 환경</h5>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-sudo systemctl stop firewalld
+<h6 id="공통">공통</h6>
+<ul>
+<li>os : centos 7.5.1804</li>
+</ul>
+<h6 id="ip">IP</h6>
+<ul>
+<li>server : 192.168.56.103</li>
+<li>agent : 192.168.56.104</li>
+</ul>
+<h2 id="방화벽-해제">방화벽 해제</h2>
+<pre><code>sudo systemctl stop firewalld
 sudo systemctl disable firewalld 
 sudo setenforce 0
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>Server
-{% highlight Kconfig %}
-sudo hostnamectl set-hostname server1.kr
-{% endhighlight %}
-Agent
-{% highlight Kconfig %}
-sudo hostnamectl set-hostname agent1.kr
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-sudo yum install -y java-1.8.0-openjdk wget
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-sudo wget -nv <a href="http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.2/ambari.repo">http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.2/ambari.repo</a> -O /etc/yum.repos.d/ambari.repo
+</code></pre><h2 id="host-name-등록">Host Name 등록</h2>
+<p>Server</p>
+<pre><code>sudo hostnamectl set-hostname server1.kr
+</code></pre><p>Agent</p>
+<pre><code>sudo hostnamectl set-hostname agent1.kr
+</code></pre><h2 id="install-java">Install Java</h2>
+<pre><code>sudo yum install -y java-1.8.0-openjdk wget
+</code></pre><h2 id="install-ambrai-server">Install Ambrai Server</h2>
+<pre><code>sudo wget -nv http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.2/ambari.repo -O /etc/yum.repos.d/ambari.repo
 sudo yum install -y ambari-server
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
+</code></pre><h2 id="set-fqdn">Set FQDN</h2>
 <p>Server와 Agent의 Host 설정</p>
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-sudo echo &ldquo;192.168.56.104   agent1.kr&rdquo; &raquo; /etc/hosts
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-sudo echo &ldquo;192.168.56.103   server1.kr&rdquo; &raquo; /etc/hosts
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
+<h6 id="server">Server</h6>
+<pre><code>sudo echo &quot;192.168.56.104   agent1.kr&quot; &gt;&gt; /etc/hosts
+</code></pre><h6 id="agent">Agent</h6>
+<pre><code>sudo echo &quot;192.168.56.103   server1.kr&quot; &gt;&gt; /etc/hosts
+</code></pre><h2 id="set-password-less-ssh">Set Password-less SSH</h2>
 <p>Server와 Agent 연결시 바로 접속을 위해</p>
-<p>Agent
-{% highlight Kconfig %}
-mkdir ~/.ssh
-{% endhighlight %}</p>
-<p>Server
-{% highlight Kconfig %}
-ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
-cat ~/.ssh/id_dsa.pub &raquo; ~/.ssh/authorized_keys
-cat ~/.ssh/id_dsa.pub | ssh <a href="mailto:root@server1.kr">root@server1.kr</a> &lsquo;cat &raquo; ~/.ssh/authorized_keys&rsquo;
-cat ~/.ssh/id_dsa.pub | ssh <a href="mailto:root@agent1.kr">root@agent1.kr</a> &lsquo;cat &raquo; ~/.ssh/authorized_keys&rsquo;;
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
+<p>Agent</p>
+<pre><code>mkdir ~/.ssh
+</code></pre><p>Server</p>
+<pre><code>ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
+cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
+cat ~/.ssh/id_dsa.pub | ssh root@server1.kr 'cat &gt;&gt; ~/.ssh/authorized_keys'
+cat ~/.ssh/id_dsa.pub | ssh root@agent1.kr 'cat &gt;&gt; ~/.ssh/authorized_keys';
+</code></pre><h2 id="check-ssh">Check SSH</h2>
 <p>비밀번호 안물어보면 성공</p>
-<p>{% highlight Kconfig %}
-ssh <a href="mailto:root@agent1.kr">root@agent1.kr</a> &lsquo;ls /&rsquo;
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-ambari-server setup
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-ambari-server setup-security
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<p>{% highlight Kconfig %}
-ambari-server start
-{% endhighlight %}</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre><code>ssh root@agent1.kr 'ls /'
+</code></pre><h2 id="install-ambari-server">Install Ambari Server</h2>
+<pre><code>ambari-server setup
+</code></pre><h2 id="https-옵션-사용시">HTTPS 옵션 사용시</h2>
+<h6 id="create-ssl-certificate">Create SSL Certificate</h6>
+<pre><code>sudo mkdir /etc/ssl/private
+sudo chmod 700 /etc/ssl/private
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+</code></pre><pre><code>ambari-server setup-security
+</code></pre><h2 id="시작">시작!</h2>
+<pre><code>ambari-server start
+</code></pre><h2 id="abmari-login">Abmari Login</h2>
+<h6 id="heading"></h6>
+<p>초기 계정 : admin/admin<br>
+Domain : agent1.kr<br>
+private key : ~/.ssh/id_dsa    // &mdash; 부터 &mdash; 까지 다 포함</p>
+<h4 id="이제-설치-진행-하다보면-아래-에러가-발생">이제 설치 진행 하다보면 아래 에러가 발생</h4>
+<h2 id="eof-occurred-in-violation-of-protocol-_sslc579-발생-시">EOF occurred in violation of protocol (_ssl.c:579) 발생 시</h2>
 <p>Agent ini 파일 수정</p>
-<p>{% highlight Kconfig %}
-vi /etc/ambari-agent/conf/ambari-agent.ini
-{% endhighlight %}</p>
-<p>[security] 항목 아래에 Protocol 추가
-{% highlight Kconfig %}
-force_https_protocol=PROTOCOL_TLSv1_2
-{% endhighlight %}</p>
-<p>이후 Retry -&gt; Success</p>
-<!-- raw HTML omitted -->
+<pre><code>vi /etc/ambari-agent/conf/ambari-agent.ini
+</code></pre><p>[security] 항목 아래에 Protocol 추가</p>
+<pre><code>force_https_protocol=PROTOCOL_TLSv1_2
+</code></pre><p>이후 Retry -&gt; Success</p>
+<h4 id="참고">참고</h4>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-apache-for-centos-7">how-to-create-an-ssl-certificate-on-apache-for-centos-7</a><br>
+<a href="http://guruble.com/ambari/">AMBARI를 이용한 HDP 2.0 설치하기</a><br>
+<a href="https://docs.hortonworks.com/HDPDocuments/Ambari-2.6.2.2/bk_ambari-security/content/optional_set_up_ssl_for_ambari.html">Apache Ambari Security</a></p>
 
         </div>
 

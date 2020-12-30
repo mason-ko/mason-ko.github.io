@@ -2,39 +2,37 @@
 layout: post
 title:  "Redis Replication Docker로 설치"
 date:   2018-12-28 16:42:46 +0900
-categories: tech docker
-permalink: /tech/docker/:title
+author:
+  name: Mason Ko
+  image: /images/author/man.png
+menu:
+  sidebar:
+    name: Redis Replication Docker로 설치
+    parent: 2018
+    weight: 10
 ---
 
-<h2>
-Install Environment
-</h2>
+## Install Environment
 
-<p>CentOs 7</p>
+###### CentOs 7
 
-<h2>
-방화벽 해제 
-</h2>
+## 방화벽 해제 
 
-{% highlight Kconfig %}
+```
 sudo systemctl stop firewalld
 sudo systemctl disable firewalld 
 sudo setenforce 0
-{% endhighlight %}
+```
 
-<h2>
-Install Docker & Docker Compose
-</h2>
+## Install Docker & Docker Compose
 
-{% highlight Kconfig %}
+```
 yum install -y docker
 sudo curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-{% endhighlight %}
+```
 
-<h2>
-Redis Replication Config File 준비
-</h2>
+## Redis Replication Config File 준비
 
 1. redis.conf 만듬
 2. Redis Stable Config 복사
@@ -42,7 +40,7 @@ Redis Replication Config File 준비
 4. Docker 외부에서 사용가능하도록 bind 주석 처리
 5. 각 slave config에 master 정보 추가
 
-{% highlight Kconfig %}
+```
 mkdir ./s1 ./s2 ./s3
 wget http://download.redis.io/redis-stable/redis.conf
 sed -i "s/bind 127.0.0.1/#bind 127.0.0.1/" redis.conf
@@ -55,15 +53,13 @@ cp -rf redis.conf ./s3/redis.conf
  
 echo 'slaveof 10.0.0.1 7000' >> ./s2/redis.conf
 echo 'slaveof 10.0.0.1 7000' >> ./s3/redis.conf
-{% endhighlight %}
+```
 
-<h2>
-Docker Compose File
-</h2>
+## Docker Compose File
 
 docker-compose.yaml
 
-{% highlight Kconfig %}
+```
 version: "3.1"
 services:
   redismaster1:
@@ -111,13 +107,11 @@ networks:
       config:
         - subnet: 10.0.0.0/16
 
-{% endhighlight %}
+```
 
-<h2>
-Info
-</h2>
+## Info
 
-slave of 를 통해 초기 slave를 지정 할 수 있음 <br/>
-서버의 상태 변경 시 target 지정한 conf 값이 변함 <br/>
-slave가 master로 승격이 될 경우를 대비해서 <br/>
-master와 slave 구분없이 모든 auto에 대해 공통 단일화 시켜야함 <br/>
+slave of 를 통해 초기 slave를 지정 할 수 있음  
+서버의 상태 변경 시 target 지정한 conf 값이 변함  
+slave가 master로 승격이 될 경우를 대비해서  
+master와 slave 구분없이 모든 auto에 대해 공통 단일화 시켜야함  
