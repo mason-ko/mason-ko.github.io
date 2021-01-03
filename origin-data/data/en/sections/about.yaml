@@ -10,21 +10,43 @@ section:
 # your designation
 designation: Backend Engineer
 # your company information
+company:
+  name: 스윗코리아.
+  url: "https://swit.io"
+
+# a summary about you
+summary: '8년차 서버 & 백엔드 개발자로 항상 재미있게 일하고자 하며 새로운것에 대한 배움을 즐깁니다.'
 
 # your social links
 # give as many as you want. use font-awesome for the icons.
 socialLinks:
-  - name: Github
-    icon: "fab fa-github"
-    url: "https://github.com/mason-ko"
+- name: Github
+  icon: "fab fa-github"
+  url: "https://github.com/mason-ko"
+
+- name: Email
+  icon: "fas fa-envelope"
+  url: "gym1029@gmail.com"
 
 # your soft skills
 # give the percentage between 50 to 100 with 5 intervals.
 # currently supported colors: blue, yellow, pink, green, sky, orange
 softSkills:
   - name: Leadership
-    percentage: 85
+    percentage: 80
     color: blue
   - name: Team Work
-    percentage: 90
+    percentage: 85
     color: yellow
+  - name: Communication
+    percentage: 90
+    color: pink
+  - name: Hard Working
+    percentage: 90
+    color: green
+  - name: Fast Learner
+    percentage: 90
+    color: sky
+  - name: Problem Solving
+    percentage: 95
+    color: orange
