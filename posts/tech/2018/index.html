@@ -280,7 +280,7 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">Redis Replication Docker로 설치</h5>
-        <p class="card-text post-summary">Install Environment CentOs 7 방화벽 해제 sudo systemctl stop firewalld sudo systemctl disable firewalld sudo setenforce 0 Install Docker &amp; Docker Compose yum install -y docker sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose sudo chmod +x /usr/local/bin/docker-compose Redis Replication Config File 준비  redis.conf 만듬 Redis Stable Config 복사 protected-mode 사용중일 때 비밀번호 필요하며 Docker 외부에서 사용가능하도록 bind 주석 처리 각 slave config에 master 정보 추가  mkdir ./s1 .</p>
+        <p class="card-text post-summary">Install Environment CentOs 7 방화벽 해제 sudo systemctl stop firewalldsudo systemctl disable firewalld sudo setenforce 0Install Docker &amp; Docker Compose yum install -y dockersudo curl -L &quot;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-composesudo chmod +x /usr/local/bin/docker-composeRedis Replication Config File 준비  redis.conf 만듬 Redis Stable Config 복사 protected-mode 사용중일 때 비밀번호 필요하며 Docker 외부에서 사용가능하도록 bind 주석 처리 각 slave config에 master 정보 추가  mkdir ./s1 .</p>
       </div>
       <div class="card-footer">
         <span class="float-left">December 28, 2018</span>
@@ -303,8 +303,8 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">Redis Sentinel Docker로 설치</h5>
-        <p class="card-text post-summary">Install Environment CentOs 7 방화벽 해제 sudo systemctl stop firewalld sudo systemctl disable firewalld sudo setenforce 0 Install Docker &amp; Docker Compose yum install -y docker sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose sudo chmod +x /usr/local/bin/docker-compose Redis Sentinel Config File 준비 sentinel.conf 만듬
-mkdir ./sentinel1 ./sentinel2 ./sentinel3 echo 'sentinel monitor mymaster 10.0.0.1 7000 2' &gt;&gt; sentinel.conf echo 'sentinel down-after-milliseconds mymaster 5000' &gt;&gt; sentinel.conf echo 'sentinel failover-timeout mymaster 7000' &gt;&gt; sentinel.</p>
+        <p class="card-text post-summary">Install Environment CentOs 7 방화벽 해제 sudo systemctl stop firewalldsudo systemctl disable firewalld sudo setenforce 0Install Docker &amp; Docker Compose yum install -y dockersudo curl -L &quot;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-composesudo chmod +x /usr/local/bin/docker-composeRedis Sentinel Config File 준비 sentinel.conf 만듬
+mkdir ./sentinel1 ./sentinel2 ./sentinel3echo 'sentinel monitor mymaster 10.0.0.1 7000 2' &gt;&gt; sentinel.confecho 'sentinel down-after-milliseconds mymaster 5000' &gt;&gt; sentinel.confecho 'sentinel failover-timeout mymaster 7000' &gt;&gt; sentinel.</p>
       </div>
       <div class="card-footer">
         <span class="float-left">December 28, 2018</span>
@@ -327,9 +327,9 @@ mkdir ./sentinel1 ./sentinel2 ./sentinel3 echo 'sentinel monitor mymaster 10.0.0
       </div>
       <div class="card-body">
         <h5 class="card-title">Ambrai 설치</h5>
-        <p class="card-text post-summary">Install Environment Windows 10 VM 환경 공통  os : centos 7.5.1804  IP  server : 192.168.56.103 agent : 192.168.56.104  방화벽 해제 sudo systemctl stop firewalld sudo systemctl disable firewalld sudo setenforce 0 Host Name 등록 Server
-sudo hostnamectl set-hostname server1.kr Agent
-sudo hostnamectl set-hostname agent1.kr Install Java sudo yum install -y java-1.8.0-openjdk wget Install Ambrai Server sudo wget -nv http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.2/ambari.repo -O /etc/yum.repos.d/ambari.repo sudo yum install -y ambari-server Set FQDN Server와 Agent의 Host 설정</p>
+        <p class="card-text post-summary">Install Environment Windows 10 VM 환경 공통  os : centos 7.5.1804  IP  server : 192.168.56.103 agent : 192.168.56.104  방화벽 해제 sudo systemctl stop firewalldsudo systemctl disable firewalld sudo setenforce 0Host Name 등록 Server
+sudo hostnamectl set-hostname server1.krAgent
+sudo hostnamectl set-hostname agent1.krInstall Java sudo yum install -y java-1.8.0-openjdk wgetInstall Ambrai Server sudo wget -nv http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.2/ambari.repo -O /etc/yum.repos.d/ambari.reposudo yum install -y ambari-serverSet FQDN Server와 Agent의 Host 설정</p>
       </div>
       <div class="card-footer">
         <span class="float-left">December 7, 2018</span>
@@ -420,8 +420,6 @@ sudo hostnamectl set-hostname agent1.kr Install Java sudo yum install -y java-1.
         <ul>
           
           <li><span>Email: </span> <span>gym1029@gmail.com</span></li>
-          
-          <li><span>Phone: </span> <span>&#43;0123456789</span></li>
           
         </ul>
       </div>
