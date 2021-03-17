@@ -77,7 +77,7 @@ proto grpc-gateway build 시 생기는 gw.go 을 보면
 
 client 입장이 되는 (http mux를 grpc Client와 등록) Register***ServiceHandlerClient 에서는 NewOutgoingContext ( runtime.AnnotateContext ) 에 담아 호출하고
 
-server 이자 client 입장이 되는 (http mux를 grpc server와 등록) 바로 연결 하는 Register***ServiceHandlerServer 에서는 NewIncomingContext (runtime.AnnotateIncomingContext ) 에 담아 호출하게 된다.
+client에서 server를 붙여 사용하는 (http mux를 grpc server와 등록) Register***ServiceHandlerServer 에서는 NewIncomingContext ( runtime.AnnotateIncomingContext ) 에 담아 호출하게 된다.
   
 
 
