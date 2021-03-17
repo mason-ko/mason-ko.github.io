@@ -1,9 +1,9 @@
 ---
-title: Tech 2020
+title: Tech 2021
 menu:
   sidebar:
-    name: 2020
-    identifier: 2020
+    name: 2021
+    identifier: 2021
     parent: tech
     weight: 10
 ---

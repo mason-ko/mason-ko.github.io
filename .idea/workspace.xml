@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="632d19ab-88b8-4ef2-bdee-584bd5d12e6c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" path="C:\Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1mCDVI9OxrGqvzO6eTpzPB1xOwY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SWIT/swit-http-oauth2-golang-dev" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Source\git\mason-ko.github.io" />
+      <recent name="D:\Source\git\mason-ko.github.io\ogirin-data" />
+      <recent name="D:\Source\git\mason-ko.github.io\content\posts" />
+      <recent name="D:\Source\git\mason-ko.github.io\content" />
+      <recent name="D:\Source\git\mason-ko.github.io\static\images\author" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Source\git\mason-ko.github.io\origin-data\data\en\sections" />
+      <recent name="D:\Source\git\mason-ko.github.io\content\posts\tech\2020" />
+      <recent name="D:\Source\git\mason-ko.github.io\content\posts\tech\2019" />
+      <recent name="D:\Source\git\mason-ko.github.io\content\posts\tech\2018" />
+      <recent name="D:\Source\git\mason-ko.github.io\content\posts\tech" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="기존 GitPage + Jekyll 사용하던 github pages 를 Hugo (toha 테마 사용) 으로 변경" />
+    <MESSAGE value="add Experiences old company &amp; rebuild site" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Experiences old company &amp; rebuild site" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="484" y="91" width="1362" height="1281" key="CommitChangelistDialog2" timestamp="1609322145962">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="484" y="91" width="1362" height="1281" key="CommitChangelistDialog2/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1609322145962" />
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1609839169575">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1609839169575" />
+    <state x="1060" y="455" key="FileChooserDialogImpl/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1609240802052" />
+    <state x="918" y="460" key="MultipleFileMergeDialog" timestamp="1609322171671">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="918" y="460" key="MultipleFileMergeDialog/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1609322171671" />
+    <state x="1096" y="401" key="RollbackChangesDialog" timestamp="1608994449551">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1096" y="401" key="RollbackChangesDialog/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1608994449551" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1609322213411">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1609322213411" />
+    <state x="92" y="92" width="2376" height="1216" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1608993757787">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="92" y="92" width="2376" height="1216" key="com.intellij.history.integration.ui.views.FileHistoryDialog/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1608993757787" />
+    <state x="988" y="298" width="584" height="804" key="find.popup" timestamp="1608995486018">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="988" y="298" width="584" height="804" key="find.popup/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1608995486018" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1608989410476">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1608989410476" />
+  </component>
+</project>
