@@ -47,11 +47,11 @@ Outgoing 으로 넣은 후 FromOutgoing 으로 가져올수 없음 ( Incoming �
 
 ### 추적
 
-grpc call 시 http2 protocol 사용 
+grpc call 시 http2 방식의 stream 사용 
 
 https://github.com/grpc-ecosystem/go-grpc-middleware/blob/master/tracing/opentracing/server_interceptors.go
 
-transport.Stream 에 ctx  incoming key 값으로 반환이 됨
+transport.Stream 에 ctx incoming key 값으로 반환이 됨
 
 transport interface 내 HandleStreams(func(*Stream), func(context.Context, string) context.Context)
 
