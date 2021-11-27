@@ -23,10 +23,12 @@ export const Bio = () => (
                 }}
               />
               <div className="author-name">
-                <span className="author-name-prefix">백엔드 개발자 고영민입니다.</span>
+                <span className="author-name-prefix">백엔드 개발자</span>
                 <Link to={'/about'} className="author-name-content">
                   <span>@{author}</span>
                 </Link>
+                <span className="author-name-prefix">입니다.</span>
+                
                 <div className="author-introduction">{introduction}</div>
                 <p className="author-socials">
                   {social.instagram && (
