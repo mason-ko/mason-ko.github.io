@@ -8,7 +8,7 @@ draft: false
 
 ## Custom Mashlaer 생성 
 
-{{< highlight go >}}
+```go
 
 type myMarshaler struct {
 	JSONPb *runtime.JSONPb
@@ -22,11 +22,11 @@ func NewMyMarshaler() runtime.ServeMuxOption {
 	return runtime.WithMarshalerOption(runtime.MIMEWildcard, m)
 }
 
-{{< /highlight >}}
+```
 
 ## JSONPb interface 구현
 
-{{< highlight go >}}
+```go
 func (m customMarshaler) Marshal(v interface{}) ([]byte, error) {
     return m.JSONPb.Marshal(v)
 }
@@ -47,22 +47,22 @@ func (m myMarshaler) ContentType() string {
 	return m.JSONPb.ContentType()
 }
 
-{{< /highlight >}}
+```
 
 필요한 부분 변경
 
 ## mux 생성 시 Custom Marshaler 등록
 
-{{< highlight go >}}
+```go
 mux := runtime.NewServeMux(
     NewMyMarshaler(),
 )
 
-{{< /highlight >}}
+```
 
 ## grpc gate way 등록
 
-{{< highlight go >}}
+```go
 opts := []grpc.DialOption{grpc.WithInsecure()}
 err := gw.RegisterSampleServiceHandlerFromEndpoint(
     context.Background(),
@@ -74,7 +74,7 @@ if err != nil {
     panic(err)
 }
 
-{{< /highlight >}}
+```
 
 #### Reference
 

@@ -1,18 +1,18 @@
 module.exports = {
-  title: `My blog...`,
+  title: `Mason blog`,
   description: `Blog posted about ...`,
   author: `mason ko`,
   introduction: `끄적끄적..`,
-  siteUrl: `https://gatsby-starter-bee.netlify.com`, // Your blog site url
+  siteUrl: `https://mason-ko.github.io`, // Your blog site url
   social: {
     twitter: ``, // Your Twitter account
     github: `mason-ko`, // Your GitHub account
     medium: ``, // Your Medium account
     facebook: ``, // Your Facebook account
     linkedin: ``, // Your LinkedIn account
-    instagram: ``, // Your Instagram account
+    instagram: ``, // Your Instagram account    
   },
-  icon: `content/assets/felog.png`, // Add your favicon
+  icon: `content/assets/free-icon-letter-m-1353378.png`, // Add your favicon
   keywords: [`blog`],
   comment: {
     disqusShortName: '', // Your disqus-short-name. check disqus.com.
