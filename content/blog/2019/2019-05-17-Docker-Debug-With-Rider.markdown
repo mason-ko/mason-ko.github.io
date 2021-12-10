@@ -12,8 +12,8 @@ draft: false
 Docker On Windows 사용할때 Check
 </h4>
 
-![My helpful screenshot]({{ "/assets/20190517/capture1.png" | absolute_url }})
-![My helpful screenshot]({{ "/assets/20190517/capture2.png" | absolute_url }})
+![](../images/20190517/capture1.png)
+![](./images/20190517/capture2.png)
 
 <h4>
 Create Dockerfile (ConsoleApp1.project)
@@ -45,18 +45,18 @@ ENTRYPOINT ["dotnet", "ConsoleApp1.dll"]
 ```
 
 추가 설정  
-![My helpful screenshot]({{ "/assets/20190517/capture3.png" | absolute_url }})
-![My helpful screenshot]({{ "/assets/20190517/capture4.png" | absolute_url }})
+![](./images/20190517/capture3.png)
+![](./images/20190517/capture4.png)
 
 ## 2. Mono Debugging
 
-![My helpful screenshot]({{ "/assets/20190517/capture5.png" | absolute_url }})
+![](./images/20190517/capture5.png)
 
 <h4>
 가끔 dll 이 출력폴더에 복사되지 않을때
 </h4>
 
-![My helpful screenshot]({{ "/assets/20190517/capture6.png" | absolute_url }})
+![](./images/20190517/capture6.png)
 
 #### 참조 Mono Debugging 문서
 
