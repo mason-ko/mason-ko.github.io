@@ -12,7 +12,7 @@ draft: false
 
 각 서버 역할을 하는 부분에 정상적으로 종료가 되도록 하기 위함 
 
-ex) 쿠버네티스 Pod의 교체가 실행이 될 때, 유실되는 내용이 없기 위함 (강제종료로 인한 subscribe message 유실 방지)
+ex) 쿠버네티스 Pod의 교체가 실행이 될 때, subscriber message 가 처리 되기 이전에 process 가 종료되어 메시지의 유실이 발생 가능성 존재
 
 ## 처리형태
 
