@@ -12,7 +12,8 @@ draft: false
 Docker On Windows 사용할때 Check
 </h4>
 
-![](../images/20190517/capture1.png)
+![](./images/20190517/capture1.png)
+
 ![](./images/20190517/capture2.png)
 
 <h4>
