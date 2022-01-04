@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Golang 할당 효율성"
-date:   2022-1-3 03:46:00 +0900
+date:   2022-01-03 03:46:00 +0900
 category: 'golang'
 draft: false
 ---
