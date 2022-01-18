@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Go Modle 에서 접근하는 private git repo 접근 에러 시"
+title:  "Go Module 에서 접근하는 private git repo 접근 에러 시"
 date:   2021-06-07 08:08:46 +0900
 category: 'git'
 draft: false
