@@ -4,8 +4,7 @@
   "description": "mason blog (use Gatsby blog starter template)",
   "version": "0.1.0",
   "author": "mason<gym1029@gmail.com>",
-  "bugs": {
-  },
+  "bugs": {},
   "dependencies": {
     "gatsby": "^2.2.8",
     "gatsby-image": "^2.0.34",
@@ -85,7 +84,6 @@
     "start": "npm run develop",
     "build": "gatsby build",
     "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js",
-    
     "deploy": "gatsby build && gh-pages -d public -b master -r 'git@github.com:mason-ko/mason-ko.github.io.git'"
   }
 }
