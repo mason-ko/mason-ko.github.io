@@ -128,3 +128,102 @@ func main() {
 .\main.go:7:6: func literal escapes to heap
 ```
 
+
+#### 배열을 매개변수로 전달 시 
+
+힙으로 할당되어졌기 때문에 매개변수로 전달받은 배열 내부의 값을 변경 시 변경됨
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func T1(x []int) {
+	x[0] = 33
+}
+
+func main() {
+	x := make([]int, 3, 3)
+	x[0] = 1
+	x[1] = 2
+	x[2] = 3
+	fmt.Println(x)
+	T1(x)
+	fmt.Println(x)
+}
+```
+```
+[1 2 3]
+[33 2 3]
+```
+
+함수 내부에서 배열을 append 했을 때에는 cap size 가 늘어나며  
+다른 힙 주소에 할당 되기 때문에 추가된 값이 반영되지 않음
+
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func T1(x []int) {
+	x[0] = 33
+	println(x)
+	x = append(x, 99)
+	println(x)
+}
+
+func main() {
+	x := make([]int, 3, 3)
+	x[0] = 1
+	x[1] = 2
+	x[2] = 3
+	fmt.Println(x)
+	T1(x)
+	fmt.Println(x)
+}
+```
+```
+[1 2 3]
+[3/3]0xc00000c120
+[4/6]0xc00000a420
+[33 2 3] 
+```
+
+cap size 가 하나 더 할당이 되어있다면 동일한 힙 주소가 사용되어져  
+함수 내부에서 append 를 하였더라도 반영됨
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func T1(x []int) {
+	x[0] = 33
+	println(x)
+	x = append(x, 99)
+	println(x)
+}
+
+func main() {
+	x := make([]int, 3, 4)
+	x[0] = 1
+	x[1] = 2
+	x[2] = 3
+	fmt.Println(x)
+	T1(x)
+	fmt.Println(x)
+}
+```
+```
+[1 2 3]
+[3/4]0xc00000e200
+[4/4]0xc00000e200
+[33 2 3]
+```
