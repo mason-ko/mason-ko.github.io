@@ -195,7 +195,8 @@ func main() {
 ```
 
 cap size 가 하나 더 할당이 되어있다면 동일한 힙 주소가 사용되어져  
-함수 내부에서 append 를 하였더라도 반영됨
+함수 내부에서 append 를 하였더라도 힙 주소가 변경되어지지 않음  
+하지만, 내부에서 추가한 값은 함수 바깥에는 적용되지 않음
 
 ```go
 package main
@@ -206,9 +207,10 @@ import (
 
 func T1(x []int) {
 	x[0] = 33
-	println(x)
+	println(x) // 2
 	x = append(x, 99)
-	println(x)
+	println(x) // 3
+	fmt.Println(x) // 4
 }
 
 func main() {
@@ -216,14 +218,15 @@ func main() {
 	x[0] = 1
 	x[1] = 2
 	x[2] = 3
-	fmt.Println(x)
+	fmt.Println(x) // 1
 	T1(x)
-	fmt.Println(x)
+	fmt.Println(x) // 5
 }
 ```
 ```
 [1 2 3]
 [3/4]0xc00000e200
 [4/4]0xc00000e200
-[33 2 3]
+[33 2 3 99]      
+[33 2 3] 
 ```

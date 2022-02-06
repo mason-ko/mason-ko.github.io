@@ -6,11 +6,7 @@
   "author": "mason<gym1029@gmail.com>",
   "bugs": {},
   "dependencies": {
-<<<<<<< HEAD
     "gatsby": "^2.32.13",
-=======
-    "gatsby": "^3.14.0",
->>>>>>> e55b8bbdcd7d29681c59712d4cbe7e5a083f457d
     "gatsby-image": "^2.0.34",
     "gatsby-plugin-feed": "^2.1.0",
     "gatsby-plugin-google-adsense": "^1.1.3",
