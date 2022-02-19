@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Alpine 사용하는 Dockerfile 빌드 dl-cdn 에러시"
-date:   2022-01-03 03:46:00 +0900
-category: 'golang'
+date:   2022-02-15 03:46:00 +0900
+category: 'docker'
 draft: false
 ---
 
