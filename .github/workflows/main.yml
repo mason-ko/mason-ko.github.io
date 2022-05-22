@@ -30,4 +30,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_PAT: ${{ secrets.ACTION }}
+<<<<<<< HEAD
           BUILD_DIR: 'public/'
+=======
+          #BUILD_DIR: '.'
+>>>>>>> 8c19d86435e1d1e7330bf7c1ff1d85bf9eb726b3
